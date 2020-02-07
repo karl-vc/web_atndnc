@@ -1,0 +1,217 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="card pb-5">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title font-weight-bold">My Profile</h4>
+    </div>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-section">
+              <div class="row">
+                <div class="col-md-5 mt-3">
+                  <img src="../static/img/profilepicture.jpg" class="col-12">
+                </div>
+                <div class="col-md-7">
+                  <div class="right-br mt-3">
+                    <h3 class="font-weight-bold">{{ employee_data.employee_firstname|capfirst }} {{ employee_data.employee_lastname|capfirst }}</h3>
+                    <p>{{ employee_data.designation_id.designation_name|capfirst }}<br><span class="font-weight-bold">Employee ID : {{ employee_data.employee_employee_id }}</span>
+                      <br>Date of Join : {{ employee_data.created_date }}</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-detail">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="title">Phone:</div>
+                    </li>
+                    <li>
+                      <div class="title">Official Email:</div>
+                    </li>
+                    <li>
+                      <div class="title">Personal Email:</div>
+                    </li>
+                    <li>
+                      <div class="title">Birthday:</div>
+                    </li>
+                    <li>
+                      <div class="title">Gender:</div>
+                    </li>
+                    <li>
+                      <div class="title">Martial Status:</div>
+                    </li>
+                    <li>
+                      <div class="title">Address:</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-7">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="text">{{ employee_data.employee_phone }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_data.employee_official_email }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_data.employee_personal_email }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_data.birthday }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_data.gender }}</div>
+                    </li>
+
+                    <li>
+                      <div class="text">{{ employee_data.martial_status }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_data.address }}</div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+<!--MY PROFILE CLOSED HERE-->
+
+<!--NAV TAB START HERE-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <!--BANK INFORMATION START HERE-->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title font-weight-bold float-left">Bank Information</h4>
+
+              </div>
+              <div class="card-body">
+                <div class="profile-detail">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <ul class="detail-list">
+                          <li>
+                            <div class="title">Bank Name:</div>
+                          </li>
+                          <li>
+                            <div class="title">Account No:</div>
+                          </li>
+                          <li>
+                            <div class="title">IFSC Code:</div>
+                          </li>
+                          <li>
+                            <div class="title">PAN NO:</div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6">
+                        <ul class="detail-list">
+                          <li>
+                            <div class="text">{{ bank_details_emp.bank_name }}</div>
+                          </li>
+                          <li>
+                            <div class="text">{{ bank_details_emp.account_no }}</div>
+                          </li>
+                          <li>
+                            <div class="text">{{ bank_details_emp.ifsc_code }}</div>
+                          </li>
+                          <li>
+                            <div class="text">{{ bank_details_emp.pan }}</div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--BANK INFORMATION TAB CLOSE HERE-->
+
+
+
+
+
+        </div>
+      </div>
+
+      <!--EDUCATION INFORMATION START HERE-->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title font-weight-bold float-left">Education Information</h4>
+
+              </div>
+              <div class="card-body">
+                <div class="profile-detail">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="education-information">
+
+                          <h3><strong>{{ employee_data.masters_college_name }}</strong></h3>
+                          <p>{{ employee_data.masters_college_course_name }},
+                            {{ employee_data.masters_start_year }} - {{ employee_data.masters_complete_year }}</p>
+                          <br>
+                          <h3><strong>{{ employee_data.graduation_college_name }}</strong></h3>
+                          <p>{{ employee_data.graduation_college_course_name }},
+                            {{ employee_data.graduation_start_year }} - {{ employee_data.graduation_complete_year }}</p>
+                          <br>
+                          <h3><strong>{{ employee_data.sec_schl_name }}</strong></h3>
+                          <p>{{ employee_data.sec_schl_board }},
+                            {{ employee_data.sec_schl_complete_year }}</p>
+                          <br>
+                          <h3><strong>{{ employee_data.matric_schl_name }}</strong></h3>
+                          <p>{{ employee_data.matric_schl_board }},
+                            {{ employee_data.matric_schl_complete_year }}</p>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--EDUCATION INFORMATION TAB CLOSE HERE-->
+
+        </div>
+      </div>
+
+    </div>
+   
+</div>
+
+
+{% endblock %}

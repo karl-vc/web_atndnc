@@ -1,0 +1,472 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mb-5">
+      <h3 class="float-left mt-0"><strong>Employee Salary</strong></h3>
+      <button class="addbtn float-right" data-toggle="modal" data-target="#addsalarymodel"><i class="fa fa-plus pr-2"></i>Add Salary</button>
+    </div>
+  </div>
+  <div class="detail-section mb-0">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="attendance-section">
+          <input type="text" id="employeenamelist" class="form-control mb-5" placeholder="Employee Name">
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="attendance-section">
+          <select class="selectbox mb-3">
+            <option value="" disabled selected>Select Roll</option>
+            <option value="1">Employee</option>
+            <option value="2">Manager</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="attendance-section">
+          <select class="selectbox mb-3">
+            <option value="" disabled selected>Select Leave Status</option>
+            <option value="1">Panding</option>
+            <option value="2">Approved</option>
+            <option value="3">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="attendance-section">
+          <input class="datepicker" id="leaveinput" width="147" />
+          <script>
+            $('#leaveinput').datepicker({
+              footer: true,
+              modal: true
+            });
+
+          </script>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="attendance-section">
+          <input class="datepicker" id="leavetoinput" width="147" />
+          <script>
+            $('#leavetoinput').datepicker({
+              footer: true,
+              modal: true
+            });
+
+          </script>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button class="search-btn mb-3">Search</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="admin-detail-section">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="table-heading">
+                <th scope="col">Employee</th>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Join Date</th>
+                <th scope="col">Roll</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Payslip</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="pt-2">
+                  <h2 class="table-pic">
+                    <a><img src="../static/img/profile11.png" class="pr-3"></a>
+                    <a>John<br><span>Web Developer</span></a>
+                  </h2>
+                </td>
+                <td>FT-0007</td>
+                <td>bernardogalaviz@example.com</td>
+                <td> 1 Jan 2014</td>
+                <td> <a class="mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Web Developer<i class="fa fa-caret-down pl-2"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Engineer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Taster</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Frent End Developer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>UI&UX Developer</a>
+                  </div>
+                </td>
+                <td>$38400</td>
+                <td class="gslip"><a href="./payslip.html" class="slip-btn">Generate Slip</a></td>
+                <td>
+                  <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editsalarymodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#adminleavedeletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-2">
+                  <h2 class="table-pic">
+                    <a><img src="../static/img/profile11.png" class="pr-3"></a>
+                    <a>John<br><span>Web Developer</span></a>
+                  </h2>
+                </td>
+                <td>FT-0007</td>
+                <td>bernardogalaviz@example.com</td>
+                <td> 1 Jan 2014</td>
+                <td> <a class="mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Web Developer<i class="fa fa-caret-down pl-2"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Engineer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Taster</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Frent End Developer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>UI&UX Developer</a>
+                  </div>
+                </td>
+                <td>$38400</td>
+                <td class="gslip"><a href="./payslip.html" class="slip-btn">Generate Slip</a></td>
+                <td>
+                  <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editsalarymodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#adminleavedeletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-2">
+                  <h2 class="table-pic">
+                    <a><img src="../static/img/profile11.png" class="pr-3"></a>
+                    <a>John<br><span>Web Developer</span></a>
+                  </h2>
+                </td>
+                <td>FT-0007</td>
+                <td>bernardogalaviz@example.com</td>
+                <td> 1 Jan 2014</td>
+                <td> <a class="mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Web Developer<i class="fa fa-caret-down pl-2"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Engineer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Taster</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Frent End Developer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>UI&UX Developer</a>
+                  </div>
+                </td>
+                <td>$38400</td>
+                <td class="gslip"><a href="./payslip.html" class="slip-btn">Generate Slip</a></td>
+                <td>
+                  <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editsalarymodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#adminleavedeletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-2">
+                  <h2 class="table-pic">
+                    <a><img src="../static/img/profile11.png" class="pr-3"></a>
+                    <a>John<br><span>Web Developer</span></a>
+                  </h2>
+                </td>
+                <td>FT-0007</td>
+                <td>bernardogalaviz@example.com</td>
+                <td> 1 Jan 2014</td>
+                <td> <a class="mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Web Developer<i class="fa fa-caret-down pl-2"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Engineer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Taster</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Frent End Developer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>UI&UX Developer</a>
+                  </div>
+                </td>
+                <td>$38400</td>
+                <td class="gslip"><a href="./payslip.html" class="slip-btn">Generate Slip</a></td>
+                <td>
+                  <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editsalarymodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#adminleavedeletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="pt-2">
+                  <h2 class="table-pic">
+                    <a><img src="../static/img/profile11.png" class="pr-3"></a>
+                    <a>John<br><span>Web Developer</span></a>
+                  </h2>
+                </td>
+                <td>FT-0007</td>
+                <td>bernardogalaviz@example.com</td>
+                <td> 1 Jan 2014</td>
+                <td> <a class="mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Web Developer<i class="fa fa-caret-down pl-2"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Engineer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Software Taster</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Frent End Developer</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>UI&UX Developer</a>
+                  </div>
+                </td>
+                <td>$38400</td>
+                <td class="gslip"><a href="./payslip.html" class="slip-btn">Generate Slip</a></td>
+                <td>
+                  <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editsalarymodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#adminleavedeletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!--------------------------------------------------------ADD SALARY MODEL START HERE----------------------------------------------------------->
+    <div class="employee-wrap-model">
+      <div class="modal fade" id="addsalarymodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add Staff Salary</h4>
+              <button class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Select Staff</label>
+                    <select class="selectbox mb-3 mdb-select md-form md-outline colorful-select dropdown-primary">
+                      <option value="1">John Doe</option>
+                      <option value="2">Richared</option>
+                      <option value="3">John Doe</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Net Salary</label>
+                    <input type="text" class="form-control" placeholder="Salary">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <p class="labeltype">Earnings</p>
+                    <label>Basic</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <p class="labeltype">Deductions</p>
+                    <label>TDS</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>DA(40%)</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>ESI</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>HRA(15%)</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>PF</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Conveyance</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Leave</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Allowance</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Prof. Tax</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Medical Allowance</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Labour Welfare</label>
+                    <input type="text" class="form-control" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Others</label>
+                    <input type="text" class="form-control mb-1" placeholder="">
+                    <p class="addother"><i class="fa fa-plus-circle pr-2"></i>Add</p>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Others</label>
+                    <input type="text" class="form-control mb-1" placeholder="">
+                    <p class="addother"><i class="fa fa-plus-circle pr-2"></i>Add</p>
+                  </div>
+                </div>
+                <button class="dept-save mt-2">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------ADD SALARY MODEL CLOSED HERE----------------------------------------------->
+
+    <!--------------------------------------------------------EDIT MODEL START HERE----------------------------------------------------------->
+    <div class="employee-wrap-model">
+      <div class="modal fade" id="editsalarymodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add Staff Salary</h4>
+              <button class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Select Staff</label>
+                    <select class="selectbox mb-3 mdb-select md-form md-outline colorful-select dropdown-primary">
+                      <option value="1">John Doe</option>
+                      <option value="2">Richared</option>
+                      <option value="3">John Doe</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Net Salary</label>
+                    <input type="text" class="form-control" placeholder="$4000">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <p class="labeltype">Earnings</p>
+                    <label>Basic</label>
+                    <input type="text" class="form-control" placeholder="$6500">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <p class="labeltype">Deductions</p>
+                    <label>TDS</label>
+                    <input type="text" class="form-control" placeholder="$300">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>DA(40%)</label>
+                    <input type="text" class="form-control" placeholder="$2000">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>ESI</label>
+                    <input type="text" class="form-control" placeholder="$20">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>HRA(15%)</label>
+                    <input type="text" class="form-control" placeholder="$700">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>PF</label>
+                    <input type="text" class="form-control" placeholder="$20">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Conveyance</label>
+                    <input type="text" class="form-control" placeholder="$70">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Leave</label>
+                    <input type="text" class="form-control" placeholder="$250">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Allowance</label>
+                    <input type="text" class="form-control" placeholder="$30">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Prof. Tax</label>
+                    <input type="text" class="form-control" placeholder="$110">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Medical Allowance</label>
+                    <input type="text" class="form-control" placeholder="$20">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Labour Welfare</label>
+                    <input type="text" class="form-control" placeholder="$10">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Others</label>
+                    <input type="text" class="form-control mb-1" placeholder="">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Fund</label>
+                    <input type="text" class="form-control mb-1" placeholder="$40">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Others</label>
+                    <input type="text" class="form-control mb-1" placeholder="">
+                  </div>
+                </div>
+                <button class="dept-save mt-2">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------EDIT MODEL CLOSED HERE----------------------------------------------->
+    <!-----------------------------------------------------------DELETE MODEL START HERE-------------------------------------------->
+    <div class="department-input">
+      <div class="modal fade" id="adminleavedeletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Delete Salary</h4>
+              <button class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4 mb-4">
+              <p>Are you sure want to delete?</p>
+              <div class="select-btn mx-auto">
+                <button class="deletetbtn">Delete</button>
+                <button class="deletetbtn ml-3">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------DELETE MODEL CLOSED HERE----------------------------------------------->
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tablecaption float-left">
+        <caption>Showing 1 to 11 of 11 entries</caption>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="pagination-section float-right">
+        <nav aria-label="Page navigation example pb-0">
+          <ul class="pagination pg-blue">
+            <li class="page-item"><a class="page-link">Previous</a></li>
+            <li class="page-item  active"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item"><a class="page-link">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

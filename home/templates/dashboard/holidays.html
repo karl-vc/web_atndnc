@@ -1,0 +1,201 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h3 class="card-title float-left pt-1"><strong>Holiday 2019</strong></h3>
+                    {% if request.session.user_role_id == 1 or request.session.user_role_id == 2 %}
+                    <button class="addbtn float-right" data-toggle="modal" data-target="#leavetypemodel"><i class="fa fa-plus pr-2"></i>Add Holiday</button>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <div class="leave-type-section">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="font-weight-bold">#</th>
+                                    <th scope="col" class="font-weight-bold">Title</th>
+                                    <th scope="col" class="font-weight-bold">Holiday Date</th>
+                                    <th scope="col" class="font-weight-bold">Day</th>
+                                    <th scope="col" class="float-right font-weight-bold">Action</th>
+                                </tr>j
+                            </thead>
+                            <tbody>
+                                {% for i in holidays_data %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ i.holiday_name }}</td>
+                                    <td>{{ i.holiday_date }}</td>
+                                    <td>{{ i.day }}</td>
+                                    <td class="float-right">
+                                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbthhhn"><i class="fa fa-ellipsis-v"></i></button></a>
+                                        <div class="dropdown-menu mr-5">
+                                            <a class="dropdown-item editbtn"  data-toggle="modal" data-id="{{i.holiday_id}}"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                                            <a class="dropdown-item delbtn"  data-toggle="modal" data-id="{{i.holiday_id}}"><i class="fa fa-trash pr-2"></i>Delete</a>
+                                        <!--model-->
+                                            <!--model end-->
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row pr-4 pl-4 mb-5">
+                    <div class="col-md-6">
+                        <div class="tablecaption float-left">
+                            <caption>Showing 1 to 10 of 12 entries</caption>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pagination-section float-right">
+                            <nav aria-label="Page navigation example pb-0">
+                                <ul class="pagination pg-blue">
+                                    <li class="page-item"><a class="page-link">Previous</a></li>
+                                    <li class="page-item  active"><a class="page-link">1</a></li>
+                                    <li class="page-item"><a class="page-link">2</a></li>
+                                    <li class="page-item"><a class="page-link">3</a></li>
+                                    <li class="page-item"><a class="page-link">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="addholidaymodal">
+                <div class="modal fade" id="leavetypemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-bold">Add Holiday</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body mx-5 mt-4">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="col-md-12">
+                                        <label for="adddepartment1">Holiday Name</label>
+                                        <input type="text" id="adddepartment1" class="form-control mb-4" name="holiday_name">
+                                    </div>
+                                    <div class="col-md-12 mb-4">
+                                        <label for="addinput">Holiday Date</label>
+                                        <input class="datepicker" id="addinput" width="461" name="holiday_date">
+
+
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="dept-save" type="submit" name="add_new">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--------------------------------------------------------EDIT MODEL START HERE----------------------------------------------------------->
+<div class="holiday-section">
+<div class="modal fade" id="editholidaymodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Edit Holiday</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-5 mt-4">
+        <form method="post">
+            {% csrf_token %}
+
+
+      <input name="holid" id="uphlid" val="" type="hidden">
+<label>
+    Holiday Name
+</label>
+            <input type="text" name="holiday_name" class="form-control">
+     <div class="col-md-12 mb-4">
+       <label for="adddepartment">Holiday date</label>
+   <input class="datepicker" id="input" width="460" name="holiday_new_date">
+    <script>
+        $('#input').datepicker({ footer: true, modal: true });
+    </script>
+    </div>
+    <div class="col-md-12">
+     <button class="dept-save" type="submit" name="update_holiday">Save</button>
+   </div>
+  </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!---------------------------------EDIT MODEL CLOSED HERE-------------------->
+<div class="department-input">
+<div class="modal fade" id="deleteholidaymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Delete Holiday</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-5 mt-4 mb-4">
+        <p>Are you sure want to delete?</p>
+     <div class="select-btn mx-auto">
+      <button class="deletetbtn">Delete</button>
+      <button class="deletetbtn ml-3">Cancel</button>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-----------------------------DELETE MODEL CLOSED HERE-------------->
+
+            {% endblock %}
+
+            {% block js %}
+<script>
+
+$(".editbtn").on("click" , function () {
+var folderid = $(this).data('id');
+
+ $(".modal-body #uphlid").val(folderid);
+ $('#editholidaymodel').modal('show');
+});
+
+</script>
+
+            <script>
+
+$(".delbtn").on("click" , function () {
+var folderid = $(this).data('id');
+
+ $(".modal-body #uphlid").val(folderid);
+ $('#deleteholidaymodal').modal('show');
+});
+
+</script>
+            <script>
+                $('#addinput').datepicker({
+                    footer: true,
+                    modal: true
+                });
+
+            </script>
+            {% endblock %}
+

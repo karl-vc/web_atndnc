@@ -1,0 +1,565 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title font-weight-bold">Leave Settings</h4>
+          </div>
+          <div class="card-body">
+            <div class="leavesetting">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5 class="setting-input">Annual</h5>
+                </div>
+                <div class="col-md-6">
+                  <label class="switch mt-2">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8 mt-4">
+                      <h5 class="labelbtn">Day</h5>
+                      <div class="form-group">
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 mt-4">
+                      <h5 class="labelbtn">Carry forward</h5>
+                      <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                          <label class="custom-control-label" for="defaultInline1">No</label>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                          <label class="custom-control-label" for="defaultInline2">Yes</label>
+                        </div>
+
+                        <div class="custom-control-inline">
+                          <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="addon-wrapping">Max</span>
+                            </div>
+                            <input type="text" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-8 mt-4">
+                      <h5 class="labelbtn">Earned Leave</h5>
+                      <div class="form-group">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input" id="btnsecondradio">
+                          <label class="custom-control-label" for="btnsecondradio">No</label>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" class="custom-control-input" id="radiobtnyes">
+                          <label class="custom-control-label" for="radiobtnyes">Yes</label>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+              </div>
+
+              <div class="wrap-table mt-4">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <h5 class="float-left">Custum Policy</h5>
+                    <button class="addbtn float-right" data-toggle="modal" data-target="#addpolicymodel"><i class="fa fa-plus pr-2"></i>Add Custus Policy</button>
+                  </div>
+                  <div class="col-md-12 mt-2">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col" class="leave-table-one">Name</th>
+                            <th scope="col" class="leave-table-two">Days</th>
+                            <th scope="col" class="tablewidth">Assignee</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="leave-table-one">5 Year Service</td>
+                            <td class="leave-table-two"> 5</td>
+                            <td class="tablewidth"> John Doe</td>
+                            <td class="float-right">
+                              <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                              <div class="dropdown-menu mr-5">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editmodal"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content mt-0 pt-0">
+  <div class=" content-section-second">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="leavesetting">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5 class="setting-input">Sick</h5>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="switch mt-2">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Days</h5>
+                        <div class="form-group">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content mt-0 pt-0">
+  <div class=" content-section-second">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="leavesetting">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5 class="setting-input">Hospitlization</h5>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="switch mt-2">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Days</h5>
+                        <div class="form-group">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+
+                <div class="wrap-table mt-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Custum Policy</h5>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="addbtn float-right" data-toggle="modal" data-target="#addpolicymodel"><i class="fa fa-plus pr-2"></i>Add Custus Policy</button>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col" class="leave-table-one">Name</th>
+                              <th scope="col" class="leave-table-two">Days</th>
+                              <th scope="col" class="tablewidth">Assignee</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="leave-table-one">5 Year Service</td>
+                              <td class="leave-table-two"> 5</td>
+                              <td class="tablewidth"> John Doe</td>
+                              <td class="float-right">
+                                <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                                <div class="dropdown-menu mr-5">
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editmodal"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content mt-0 pt-0">
+  <div class=" content-section-second">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="leavesetting">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5 class="setting-input">Maternity<span>Assigned to female only</span></h5>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="switch mt-2">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Days</h5>
+                        <div class="form-group">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content mt-0 pt-0">
+  <div class=" content-section-second">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="leavesetting">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5 class="setting-input">Paternity<span>Assigned to male only</span></h5>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="switch mt-2">
+                      <input type="checkbox" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Days</h5>
+                        <div class="form-group">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content mt-0 pt-0">
+  <div class=" content-section-second">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="leavesetting">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h5 class="setting-input">LOP</h5>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="d-flex float-right">
+                      <label class="switch mt-2">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                      </label>
+                      <button class="ml-3 leave-edit-btn">Delete</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Day</h5>
+                        <div class="form-group">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Carry forward</h5>
+                        <div class="form-group">
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                            <label class="custom-control-label" for="defaultInline1">No</label>
+                          </div>
+
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                            <label class="custom-control-label" for="defaultInline2">Yes</label>
+                          </div>
+
+                          <div class="custom-control-inline">
+                            <div class="input-group flex-nowrap">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="addon-wrapping">Max</span>
+                              </div>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-8 mt-4">
+                        <h5 class="labelbtn">Earned Leave</h5>
+                        <div class="form-group">
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="btnsecondradio">
+                            <label class="custom-control-label" for="btnsecondradio">No</label>
+                          </div>
+
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="radiobtnyes">
+                            <label class="custom-control-label" for="radiobtnyes">Yes</label>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <button class="leave-settingbtn" id="editbtnshow">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </div>
+
+                <div class="wrap-table mt-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Custum Policy</h5>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="addbtn float-right" data-toggle="modal" data-target="#addpolicymodel"><i class="fa fa-plus pr-2"></i>Add Custus Policy</button>
+                    </div>
+                    <div class="col-md-12 mt-2">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col" class="leave-table-one">Name</th>
+                              <th scope="col" class="leave-table-two">Days</th>
+                              <th scope="col" class="tablewidth">Assignee</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="leave-table-one">5 Year Service</td>
+                              <td class="leave-table-two"> 5</td>
+                              <td class="tablewidth"> John Doe</td>
+                              <td class="float-right">
+                                <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                                <div class="dropdown-menu mr-5">
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editmodal"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap-model">
+  <div class="modal fade" id="addpolicymodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Add Custom Policy</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-5 mt-4">
+          <form>
+            <div class="col-md-12">
+              <label for="addleavetype">Policy Name</label>
+              <input type="text" id="addleavetype" class="form-control mb-4">
+            </div>
+            <div class="col-md-12">
+              <label for="addnumberofday">Days</label>
+              <input type="text" id="addnumberofday" class="form-control mb-4">
+            </div>
+            <div class="col-md-12">
+              <div class="leavetype-model">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h5>Add employee</h5>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="left-saction">
+                      <ul>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                        <li>John</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <div class="icon-bar">
+                      <i class="fa fa-forward"></i>
+                    </div>
+                    <div class="icon-bar">
+                      <i class="fa fa-chevron-left"></i>
+                    </div>
+                    <div class="icon-bar">
+                      <i class="fa fa-chevron-right"></i>
+                    </div>
+                    <div class="icon-bar">
+                      <i class="fa fa-backward"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="left-saction">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="dept-save">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,650 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="attendance-section">
+        <input type="text" id="employeenamelist" class="form-control mb-5" placeholder="Employee Name">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="attendance-section">
+        <select class="selectbox mb-5 mdb-select md-form md-outline colorful-select dropdown-primary">
+          <option value="" disabled selected>Select Month</option>
+          <option value="1">Jan</option>
+          <option value="2">Feb</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">Jun</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="attendance-section">
+        <select class="selectbox mb-5 mdb-select md-form md-outline colorful-select dropdown-primary">
+          <option value="" disabled selected>Select Year</option>
+          <option value="1">2015</option>
+          <option value="2">2016</option>
+          <option value="3">2017</option>
+          <option value="4">2018</option>
+          <option value="5">2019</option>
+          <option value="6">2020</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <button class="search-btn mb-5">Search</button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="empoloyee-attendence z-depth-5">
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Employee</th>
+                <th scope="col">1</th>
+                <th scope="col">2</th>
+                <th scope="col">3</th>
+                <th scope="col">4</th>
+                <th scope="col">5</th>
+                <th scope="col">6</th>
+                <th scope="col">7</th>
+                <th scope="col">8</th>
+                <th scope="col">9</th>
+                <th scope="col">10</th>
+                <th scope="col">11</th>
+                <th scope="col">12</th>
+                <th scope="col">13</th>
+                <th scope="col">14</th>
+                <th scope="col">15</th>
+                <th scope="col">16</th>
+                <th scope="col">17</th>
+                <th scope="col">18</th>
+                <th scope="col">19</th>
+                <th scope="col">20</th>
+                <th scope="col">21</th>
+                <th scope="col">22</th>
+                <th scope="col">23</th>
+                <th scope="col">24</th>
+                <th scope="col">25</th>
+                <th scope="col">26</th>
+                <th scope="col">27</th>
+                <th scope="col">28</th>
+                <th scope="col">29</th>
+                <th scope="col">30</th>
+                <th scope="col">31</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in total_employees %}
+              <tr>
+                <th scope="row">
+                  <h5 class="text-danger">{{ i.employee_employee_id }}</h5>
+                </th>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '01' or j.db_date == '01' %}
+
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% if j.present and j.db_date == '01' %}
+                  <p class="text-success">P</p>
+
+                  {% elif j.on_leave and j.db_date == '01' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '01' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '02' or j.db_date == '02' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+
+
+
+                  {% if j.present and j.db_date == '02' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '02' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '02' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '03' or j.db_date == '03' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '03' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '03' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '03' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '04' or j.db_date == '04' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '04' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '04' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '04' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '05' or j.db_date == '05' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '05' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '05' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '05' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '06' or j.db_date == '06' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '06' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '06' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '06' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '07' or j.db_date == '07' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '07' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '07' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '07' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '08' or j.db_date == '08' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '08' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '08' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '08' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '09' or j.db_date == '09' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '09' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '09' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '09' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '10' or j.db_date == '10' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '10' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '10' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '10' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '11' or j.db_date == '11' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '11' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '11' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '11' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '12' or j.db_date == '12' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '12' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '12' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '12' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '13' or j.db_date == '13' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '13' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '13' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '13' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '14' or j.db_date == '14' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '14' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '14' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '14' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '15' or j.db_date == '15' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '15' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '15' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '15' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '16' or j.db_date == '16' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '16' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '16' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '16' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '17' or j.db_date == '17' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '17' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '17' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '17' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '18' or j.db_date == '18' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '18' %}
+                  <p class="text-success">P</p>
+                  {% elif j.on_leave and j.db_date == '18' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '18' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+
+                </td>
+
+                <td>
+
+                  {% for j in employee_present_today %}
+                  {% if today_date == '19' or j.db_date == '19' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '19' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '19' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+                  {% if not j.present and j.db_date == '19' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+
+
+                </td>
+                <td>
+                  {% for j in employee_present_today %}
+                  {% if today_date == '20' or j.db_date == '20' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '20' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '20'%}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+                  {% if not j.present and j.db_date == '20' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '21' or j.db_date == '21' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '21' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '21' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '21' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '22' or j.db_date == '22' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '22' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '22' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '22' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '23' or j.db_date == '23' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '23' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '23' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '23'%}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '24' or j.db_date == '24' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '24' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '24' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '24' %}
+                  <p class="text-danger">L</p>
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+
+                </td>
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '25' or j.db_date == '25' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '25' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '25' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '25' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '26' or j.db_date == '26' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '26' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '26' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '26' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '27' or j.db_date == '27' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '27' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '27' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '27' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '28' or j.db_date == '28' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '28' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '28' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '28' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '29' or j.db_date == '29' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '29' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '29' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '29'%}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '30' or j.db_date == '30' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '30' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '30' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '30' %}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+
+                <td> {% for j in employee_present_today %}
+                  {% if today_date == '31' or j.db_date == '31' %}
+                  {% if j.employee_employee_id_id == i.employee_employee_id %}
+                  {% if j.present and j.db_date == '31' %}
+                  <p class="text-success">P</p>
+                  {% endif %}
+                  {% if not j.present and j.db_date == '31' %}
+                  <p class="text-danger"><strong>A</strong></p>
+                  {% endif %}
+                  {% if j.on_leave and j.db_date == '31'%}
+                  <p class="text-danger">L</p>
+
+                  {% endif %}
+
+                  {% endif %}
+                  {% endif %}
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

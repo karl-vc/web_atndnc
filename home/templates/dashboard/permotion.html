@@ -1,0 +1,215 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-5">
+            <h3 class="float-left mt-0"><strong>Promotion</strong></h3>
+            <button class="addbtn float-right" data-toggle="modal" data-target="#addterminationmodel"><i class="fa fa-plus pr-2"></i>Add Promotion</button>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <div class="overtime-table">
+              <div class="data-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Promotion Employee</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Promotion Designation From</th>
+                        <th scope="col">Promotion Designation To</th>
+                        <th scope="col">Promotion Date</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td class="pt-2">
+                          <h2 class="table-pic">
+                            <a><img src="../static/img/profile11.png" class="pr-3"></a>
+                            <a>John<br><span>Web Developer</span></a>
+                          </h2>
+                        </td>
+                        <td>Web Development</td>
+                        <td>Web Developer</td>
+                        <td>Sr Web Developer</td>
+                        <td>28 Feb 2019</td>
+                        <td>
+                          <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                          <div class="dropdown-menu mr-5">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#terminationeditmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#terminationdeletemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="tablecaption float-left">
+              <caption>Showing 1 to 10 of 12 entries</caption>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="pagination-section float-right">
+              <nav aria-label="Page navigation example pb-0">
+                <ul class="pagination pg-blue">
+                  <li class="page-item"><a class="page-link">Previous</a></li>
+                  <li class="page-item  active"><a class="page-link">1</a></li>
+                  <li class="page-item"><a class="page-link">2</a></li>
+                  <li class="page-item"><a class="page-link">3</a></li>
+                  <li class="page-item"><a class="page-link">Next</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <!------------------------------------------------------------------pagination row closed here------------------------------------------------>
+
+        <!--------------------------------------------------------ADD LEAVE MODEL START HERE----------------------------------------------------------->
+        <div class="wrap-model">
+          <div class="modal fade" id="addterminationmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Add Promotion</h4>
+                  <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body mx-5 mt-4">
+                  <form>
+                    <div class="col-md-12">
+                      <label>Promotion From</label>
+                      <input type="text" class="form-control mb-4" placeholder="" /required> </div> <div class="col-md-12">
+                      <label>Promotion For</label>
+                      <input type="text" class="form-control mb-4" placeholder="">
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Promotion To</label>
+                        <select class="custom-select browser-default" required>
+                          <option value="1">Web Development</option>
+                          <option value="2">Python Developer</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Promotion Date</label>
+                        <div class="md-form mt-0">
+                          <input class="datepicker" id="addpromotionmodel" width="461" />
+                          <script>
+                            $('#addpromotionmodel').datepicker({
+                              footer: true,
+                              modal: true
+                            });
+
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button class="dept-save">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---------------------------------------------------------------------------ADD LEAVE MODEL CLOSED HERE----------------------------------------------->
+
+        <!--------------------------------------------------------EDIT MODEL START HERE----------------------------------------------------------->
+        <div class="wrap-model">
+          <div class="modal fade" id="terminationeditmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Edit Promotion</h4>
+                  <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body mx-5 mt-4">
+                  <form>
+                    <div class="col-md-12">
+                      <label>Promotion From</label>
+                      <input type="text" class="form-control mb-4" placeholder="" /required> </div> <div class="col-md-12">
+                      <label>Promotion For</label>
+                      <input type="text" class="form-control mb-4" placeholder="">
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Promotion To</label>
+                        <select class="custom-select browser-default" required>
+                          <option value="1">Web Development</option>
+                          <option value="2">Python Developer</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Promotion Date</label>
+                        <div class="md-form mt-0">
+                          <input class="datepicker" id="promotionmodel" width="461" />
+                          <script>
+                            $('#promotionmodel').datepicker({
+                              footer: true,
+                              modal: true
+                            });
+
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button class="dept-save">Save</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---------------------------------------------------------------------------EDIT MODEL CLOSED HERE----------------------------------------------->
+        <!-----------------------------------------------------------DELETE MODEL START HERE-------------------------------------------->
+        <div class="department-input">
+          <div class="modal fade" id="terminationdeletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Delete Promotion</h4>
+                  <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body mx-5 mt-4 mb-4">
+                  <p>Are you sure want to delete?</p>
+                  <div class="select-btn mx-auto">
+                    <button class="deletetbtn">Delete</button>
+                    <button class="deletetbtn ml-3">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---------------------------------------------------------------------------DELETE MODEL CLOSED HERE----------------------------------------------->
+      </div>
+   
+{% endblock %}

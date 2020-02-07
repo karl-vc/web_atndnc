@@ -1,0 +1,160 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="card card-plain">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title float-left"><strong>Department</strong></h3>
+          <button class="addbtn float-right" data-toggle="modal" data-target="#adddepartmentmodal"><i class="fa fa-plus pr-2"></i>Add Department</button>
+
+        </div>
+        {% if department_added %}
+        <div class="alert alert-default alert-dismissible fade show" role="alert">
+          <strong>New Department Added</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> {% endif %}
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="center-dept z-depth-5">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bold">#</th>
+                      <th class="font-weight-bold">Department</th>
+                      <th class="font-weight-bold">Action</th>
+                    </tr>
+                  <tbody>
+                    {% for i in dept_data %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ i.department_name }}</td>
+                      <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                          <a data-toggle="modal" data-target="#editmodal" class="btn btn-sm btn-info">EDIT</a>
+                          &nbsp;
+                          <a data-toggle="modal" data-target="#modalLoginForm" class="btn btn-sm btn-danger">DELETE</a>
+                        </div>
+                      </td>
+                    </tr>
+
+
+
+                    <!-- edit modal -->
+
+                    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editmodal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Edit Department</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body mx-3">
+                            <form method="post">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <label> DEPARTMENT NAME </label>
+                                <input type="text" name="dept_name" class="form-control" value="{{ i.department_name }}">
+                              </div>
+                              <div class="mx-auto">
+                                <button type="submit" class="btn btn-info">UPDATE</button>
+                              </div>
+                            </form>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- edit modal -->
+
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- delete modal -->
+              <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title w-100 font-weight-bold">Are you sure to delete?</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-3">
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <form method="post">
+                          {% csrf_token %}
+                          <button class="btn btn-danger">Confirm</button>
+                        </form>
+                        <form class="pl-3">
+                          <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">Cancel</button>
+                        </form>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- delet modal -->
+
+
+
+              <div class="department-input">
+                <div class="modal fade" id="adddepartmentmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Add Department</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body mx-5 mt-4 mb-4">
+                        <form method="post" novalidate>
+                          {% csrf_token %}
+
+                          <div class="form-group">
+                            <label for="designationname2"><strong>Department Name</strong></label>
+                            {{ form.department_name }}
+                            {{ form.department_name.error }}</div>
+                          <button class="dept-save">Add</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!--pagination row closed here-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+{% endblock %}

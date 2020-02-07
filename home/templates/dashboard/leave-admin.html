@@ -1,0 +1,265 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+
+<div class="container">
+  
+
+  <div class="row mb-5">
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Today Presents<br><span>12 / 60</span></h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Planned Leaves<br><span>8 Today</span></h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Unplanned Leaves<br><span>0 Today</span></h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Pending Requests<br><span>12</span></h5>
+      </div>
+    </div>
+  </div>
+ 
+
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="admin-detail-section">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="table-heading">
+                  <th scope="col">Employee</th>
+                  <th scope="col">Leave Type</th>
+                  <th scope="col">Date</th>
+                 
+                   <th scope="col">Policy</th>
+                  
+                  <th scope="col">Status</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+               
+                  {% for i in leaves_data %}
+                  <tr>
+                  <td class="pt-2">
+                   {{ i.employee_employee_id.employee_username }}
+                  </td>
+                  <td>{{ i.leave_type }}</td>
+                  <td>{{ i.leave_from }} - {{ i.leave_to }}{{ i.short_leave_date }}{{ i.half_day_leave_date }}{{ i.one_day_leave_date }}</td>
+                    <td>{% if i.one_day_leave %}
+                      One Day
+                      {% endif %}
+                      {% if i.half_day_leave %}
+                      Half Day
+                      {% endif %}
+                    
+                      {{ i.leave_policy_type }}</td>
+                 
+                  <td>
+                    {% if i.leave_status == 1 %}
+                      Pending
+                      {% endif %}
+                    {% if i.leave_status == 2 %}
+                     Approved
+                      {% endif %}
+                    {% if i.leave_status == 3 %}
+                      Declined
+                      {% endif %}
+                  
+                   
+                  </td>
+                 
+                   {% endfor %}
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--------------------------------------------------------ADD LEAVE MODEL START HERE----------------------------------------------------------->
+      <div class="wrap-model">
+        <div class="modal fade" id="addleavetypemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add Leave</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-5 mt-4">
+                <form>
+                  <div class="col-md-12">
+                    <label for="addleavetype">Leave Type</label>
+                    <input type="text" id="addleavetype" class="form-control mb-4" placeholder="Casual leave">
+                  </div>
+                  <div class="col-md-12 mb-4">
+                    <label for="addfromleavetype">From</label>
+                    <input class="datepicker" id="addfromleavetype" width="461" />
+                    <script>
+                      $('#addfromleavetype').datepicker({
+                        footer: true,
+                        modal: true
+                      });
+
+                    </script>
+                  </div>
+                  <div class="col-md-12 mb-4">
+                    <label for="addtoleavetype">To</label>
+                    <input class="datepicker" id="addtoleavetype" width="461" />
+                    <script>
+                      $('#addtoleavetype').datepicker({
+                        footer: true,
+                        modal: true
+                      });
+
+                    </script>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="addnumberofday">Number of Days</label>
+                    <input type="text" id="addnumberofday" class="form-control mb-4" placeholder="2" readonly />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="addremaining">Remaining Leaves</label>
+                    <input type="text" id="addremaining" class="form-control mb-4" placeholder="12" readonly />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="addtextarea">Leave Reason</label>
+                    <textarea id="addtextarea" class="form-control mb-4" rows="6"></textarea>
+                  </div>
+                  <button class="dept-save">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---------------------------------------------------------------------------ADD LEAVE MODEL CLOSED HERE----------------------------------------------->
+
+      <!--------------------------------------------------------EDIT MODEL START HERE----------------------------------------------------------->
+      <div class="wrap-model">
+        <div class="modal fade" id="admineditleavemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Leave</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-5 mt-4">
+                <form>
+                  <div class="col-md-12">
+                    <label for="addleavetype">Leave Type</label>
+                    <input type="text" id="addleavetype" class="form-control mb-4" placeholder="Casual leave">
+                  </div>
+                  <div class="col-md-12 mb-4">
+                    <label for="fromleavetype">From</label>
+                    <input class="datepicker" id="fromleavetype" width="461" />
+                    <script>
+                      $('#fromleavetype').datepicker({
+                        footer: true,
+                        modal: true
+                      });
+
+                    </script>
+                  </div>
+                  <div class="col-md-12 mb-4">
+                    <label for="toleavetype">To</label>
+                    <input class="datepicker" id="toleavetype" width="461" />
+                    <script>
+                      $('#toleavetype').datepicker({
+                        footer: true,
+                        modal: true
+                      });
+
+                    </script>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="addnumberofday">Number of Days</label>
+                    <input type="text" id="addnumberofday" class="form-control mb-4" placeholder="2" readonly />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="addremaining">Remaining Leaves</label>
+                    <input type="text" id="addremaining" class="form-control mb-4" placeholder="12" readonly />
+                  </div>
+                  <div class="col-md-12">
+                    <label for="addtextarea">Leave Reason</label>
+                    <textarea id="addtextarea" class="form-control mb-4" rows="6"></textarea>
+                  </div>
+                  <button class="dept-save">Save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---------------------------------------------------------------------------EDIT MODEL CLOSED HERE----------------------------------------------->
+      <!-----------------------------------------------------------DELETE MODEL START HERE-------------------------------------------->
+      <div class="department-input">
+        <div class="modal fade" id="adminleavedeletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Delete Leave</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-5 mt-4 mb-4">
+                <p>Are you sure want to delete this leave?</p>
+                <div class="select-btn mx-auto">
+                  <button class="deletetbtn">Delete</button>
+                  <button class="deletetbtn ml-3">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---------------------------------------------------------------------------DELETE MODEL CLOSED HERE----------------------------------------------->
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="tablecaption float-left">
+          <caption>Showing 1 to 10 of 12 entries</caption>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pagination-section float-right">
+          <nav aria-label="Page navigation example pb-0">
+            <ul class="pagination pg-blue">
+              <li class="page-item"><a class="page-link">Previous</a></li>
+              <li class="page-item  active"><a class="page-link">1</a></li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">3</a></li>
+              <li class="page-item"><a class="page-link">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}
+  {% block js %}
+  <script>
+    $(document).ready(function() {
+      $('.datepicker').pickadate();
+      $('.mdb-select').material_select();
+    });
+
+  </script>
+  {% endblock %}

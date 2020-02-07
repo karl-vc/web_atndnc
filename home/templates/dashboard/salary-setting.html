@@ -1,0 +1,160 @@
+{% extends 'dashboard/settings-base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title"><strong>Salary Setting</strong></h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="setting-section">
+              <div class="row mt-3 mb-3">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">DA and HRA</h4>
+                </div>
+                <div class="col-md-6">
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputcompanyda">DA(%)</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputhar">HAR(%)</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <!--------------------------------------------FIRST ROW CLOSE HERE----------------------------------->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">Provident Fund Settings </h4>
+                </div>
+                <div class="col-md-6">
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputemployeeshare">Employee Share(%)</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputorganizationshare">Organization Share(%)</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <!------------------------------------------------SECOND ROW CLOSE HERE------------------------------->
+
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">ESI Setting</h4>
+                </div>
+                <div class="col-md-6">
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputemployeeshare">Employee Share(%)</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inputorganizationshare">Organization Share(%)</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <!------------------------------------------------THIRD ROW CLOSE HERE------------------------------->
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="font-weight-bold">TDS Annual Salary</h4>
+                </div>
+                <div class="col-md-6">
+                  <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="inputemployeeshare">Salary From</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="inputorganizationshare">Salary To</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="inputorganizationshare">%</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button class="delete-iconbtn"><i class="fa fa-trash-o"></i></button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="inputemployeeshare">Salary From</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="inputorganizationshare">Salary To</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="inputorganizationshare">%</label>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button class="delete-iconbtn"><i class="fa fa-trash-o"></i></button>
+                  <br>
+                  <button class="add-iconbtn"><i class="fa fa-plus"></i></button>
+                </div>
+                <div class="col-md-12">
+                  <button type="button" class="savebtn">Save</button>
+                </div>
+              </div>
+
+              <!------------------------------------------------THIRD ROW CLOSE HERE------------------------------->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

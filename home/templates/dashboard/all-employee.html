@@ -1,0 +1,457 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-md-7">
+      <h3 class="float-left mt-0"><strong>Employee</strong></h3>
+    </div>
+    <div class="col-md-5">
+      <div class="icon-view">
+        <a href="all-employee.html"><span class="span-icon mr-3"><i class="fa fa-th"></i></span></a>
+        <a href=""><span class="span-icon  mr-3"><i class="fa fa-align-justify"></i></span></a>
+
+        <button class="addbtn" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-plus pr-2"></i>Add Today Work</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="attendance-section">
+        <input type="text" class="form-control mb-5" placeholder="Employee ID">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="attendance-section">
+        <input type="text" class="form-control mb-5" placeholder="Employee Name">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="attendance-section">
+        <select class="selectbox mb-5 mdb-select md-form md-outline colorful-select dropdown-primary">
+          <option value="" disabled selected>Designations</option>
+          <option value="1">Web Developer</option>
+          <option value="2">Web Developer</option>
+          <option value="3">Web Developer</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <button class="search-btn mb-5">Search</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="/static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="/static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="../static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="../static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="../static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="../static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="../static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+    <div class="col-md-3 mb-5">
+      <div class="employee-detail-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="profile-widget text-center">
+              <img src="/static/img/profile11.png" class="mb-0">
+              <h5 class="mb-0">John Doe</h5>
+              <p>Web Designer</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="dropdown-icon float-right">
+              <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+              <div class="dropdown-menu mr-5">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editemployeedetails"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#employeedetaildeletemodel"><i class="fa fa-trash pr-2"></i>Delete</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--first-employee-details-closed here-->
+  </div>
+
+  <!--EDIT MODEL START HERE-->
+  <div class="employee-wrap-model">
+    <div class="modal fade" id="editemployeedetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Edit Employee</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" placeholder="First Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control" placeholder="Last Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Username</label>
+                  <input type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Email</label>
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Password</label>
+                  <input type="text" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Confirm Password</label>
+                  <input type="text" class="form-control" placeholder="Confirm Password">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Employee ID</label>
+                  <input type="text" class="form-control" placeholder="Employee ID">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Joining Date</label>
+                  <input type="text" class="form-control" placeholder="Joining Date">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Phone</label>
+                  <input type="text" class="form-control" placeholder="Phone">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Company</label>
+                  <div class="attendance-section">
+                    <select class="selectbox mdb-select md-form md-outline colorful-select dropdown-primary">
+                      <option value="" disabled selected>Select Company</option>
+                      <option value="1">Webtunix</option>
+                      <option value="2">Webtunix</option>
+                      <option value="3">Webtunix</option>
+                      <option value="4">Webtunix</option>
+                      <option value="5">Webtunix</option>
+                      <option value="6">Webtunix</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Department</label>
+                  <div class="attendance-section">
+                    <select class="selectbox mb-3 mdb-select md-form md-outline colorful-select dropdown-primary">
+                      <option value="" disabled selected>Select Department</option>
+                      <option value="1">Web Developer</option>
+                      <option value="2">Web Developer</option>
+                      <option value="3">Web Developer</option>
+                      <option value="4">Web Developer</option>
+                      <option value="5">Web Developer</option>
+                      <option value="6">Web Developer</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Designation</label>
+                  <div class="attendance-section">
+                    <select class="selectbox mb-3 mdb-select md-form md-outline colorful-select dropdown-primary">
+                      <option value="" disabled selected>Select Designation</option>
+                      <option value="1">Web Designer</option>
+                      <option value="2">Web Designer</option>
+                      <option value="3">Web Designer</option>
+                      <option value="4">Web Designer</option>
+                      <option value="5">Web Designer</option>
+                      <option value="6">Web Designer</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Module Permission</th>
+                        <th scope="col">Read</th>
+                        <th scope="col">Write</th>
+                        <th scope="col">Create</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Import</th>
+                        <th scope="col">Export</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Holidays</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+
+                      <tr>
+                        <td>Leaves</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Clients</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Projects</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Tasks</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Chats</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Assets</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Timing Sheets</td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                        <td><i class="fa fa-check-square-o"></i></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <button class="dept-save">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--EDIT MODEL CLOSED HERE-->
+  <!--DELETE MODEL START HERE-->
+  <div class="department-input">
+    <div class="modal fade" id="employeedetaildeletemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Delete Employee</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4 mb-4">
+            <p>Are you sure want to delete?</p>
+            <div class="select-btn mx-auto">
+              <button class="deletetbtn">Delete</button>
+              <button class="deletetbtn ml-3">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--DELETE MODEL CLOSED HERE-->
+</div>
+{% endblock %}

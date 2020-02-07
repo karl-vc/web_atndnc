@@ -1,0 +1,177 @@
+{% extends 'dashboard/settings-base.html' %}
+{% block content %}
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title float-left"><strong>Leave Tpye</strong></h3>
+            <button class="addbtn float-right" data-toggle="modal" data-target="#leavetypemodel"><i class="fa fa-plus pr-2"></i>Add Leave Tpye</button>
+          </div>
+          <div class="card-body">
+            <div class="leave-type-section">
+              <div class="table-responsive">
+                <table class="table">
+                  <caption class="font-weight-bold">Showing 1 to 3 of 3 entries</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" class="font-weight-bold">#</th>
+                      <th scope="col" class="font-weight-bold">Leave Type</th>
+                      <th scope="col" class="font-weight-bold">Leave Day</th>
+                      <th scope="col" class="font-weight-bold text-center">Status</th>
+                      <th scope="col" class="float-right font-weight-bold">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Casual Leave</td>
+                      <td>12 Days</td>
+                      <td class="text-center">
+                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Active<i class="fa fa-caret-down pl-2"></i></button></a>
+                        <div class="dropdown-menu mr-5">
+                          <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Active</a>
+                          <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Inactive</a>
+                        </div>
+                      </td>
+                      <td class="float-right">
+                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                        <div class="dropdown-menu mr-5">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editleavemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteleavemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Medical Leave</td>
+                      <td>12 Days</td>
+                      <td class="text-center">
+                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Active<i class="fa fa-caret-down pl-2"></i></button></a>
+                        <div class="dropdown-menu mr-5">
+                          <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Active</a>
+                          <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Inactive</a>
+                        </div>
+                      </td>
+                      <td class="float-right">
+                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                        <div class="dropdown-menu mr-5">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editleavemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteleavemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Loss of Pay</td>
+                      <td>12 Days</td>
+                      <td class="text-center">
+                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="activebtn">Active<i class="fa fa-caret-down pl-2"></i></button></a>
+                        <div class="dropdown-menu mr-5">
+                          <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Active</a>
+                          <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o pr-2"></i>Inactive</a>
+                        </div>
+                      </td>
+                      <td class="float-right">
+                        <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                        <div class="dropdown-menu mr-5">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editleavemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteleavemodal"><i class="fa fa-trash pr-2"></i>Delete</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!--------------------------------------------------------ADD TYPE LEAVE MODEL START HERE----------------------------------------------------------->
+          <div class="department-input">
+            <div class="modal fade" id="leavetypemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Add Leave Tpye</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body mx-5 mt-4">
+                    <form>
+                      <div class="col-md-12">
+                        <label for="adddepartment">Leave Type</label>
+                        <input type="text" id="adddepartment" class="form-control mb-4">
+                      </div>
+                      <div class="col-md-12">
+                        <label for="adddepartment">Number of Days</label>
+                        <input type="text" id="adddepartment" class="form-control mb-4">
+                      </div>
+                      <button class="dept-save">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---------------------------------------------------------------------------ADD TYPE LEAVE MODEL CLOSED HERE----------------------------------------------->
+          <!--------------------------------------------------------EDIT MODEL START HERE----------------------------------------------------------->
+          <div class="department-input">
+            <div class="modal fade" id="editleavemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Edit Leave Tpye</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body mx-5 mt-4">
+                    <form>
+                      <div class="col-md-12">
+                        <label for="adddepartment">Leave Type</label>
+                        <input type="text" id="adddepartment" class="form-control mb-4" placeholder="Casual leave">
+                      </div>
+                      <div class="col-md-12">
+                        <label for="adddepartment">Number of Days</label>
+                        <input type="text" id="adddepartment" class="form-control mb-4" placeholder="12">
+                      </div>
+                      <button class="dept-save">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---------------------------------------------------------------------------EDIT MODEL CLOSED HERE----------------------------------------------->
+          <div class="department-input">
+            <div class="modal fade" id="deleteleavemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Delete Leave Type</h4>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body mx-5 mt-4 mb-4">
+                    <p>Are you sure want to delete?</p>
+                    <div class="select-btn mx-auto">
+                      <button class="deletetbtn">Delete</button>
+                      <button class="deletetbtn ml-3">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---------------------------------------------------------------------------DELETE MODEL CLOSED HERE----------------------------------------------->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

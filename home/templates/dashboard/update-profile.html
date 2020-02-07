@@ -1,0 +1,836 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="card pb-5">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title font-weight-bold">My Profile</h4>
+    </div>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-section">
+              <div class="row">
+                <div class="col-md-5 mt-3">
+                    <img src="../static/img/profilepicture.jpg" class="col-12">
+                </div>
+                <div class="col-md-7">
+                  <div class="right-br mt-3">
+                    <h3 class="font-weight-bold">John Doe</h3>
+                    <p>Web Designer<br><span class="font-weight-bold">Employee ID : 88992288</span><br>Date of Join : 1st June 2019</p>
+                    <button>Send Massage</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-detail">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="title">Phone:</div>
+                    </li>
+                    <li>
+                      <div class="title">Email:</div>
+                    </li>
+                    <li>
+                      <div class="title">Birthday:</div>
+                    </li>
+                    <li>
+                      <div class="title">Address:</div>
+                    </li>
+                    <li>
+                      <div class="title">Gender:</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-7">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="text">5552457415</div>
+                    </li>
+                    <li>
+                      <div class="text">johndoe@gmail.com</div>
+                    </li>
+                    <li>
+                      <div class="text">12th-June-2019</div>
+                    </li>
+                    <li>
+                      <div class="text">#3432 Sector = 22D Chandigarh</div>
+                    </li>
+                    <li>
+                      <div class="text">Male</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-1">
+                  <div class="first-editbtn">
+                    <button data-toggle="modal" data-target="#editprofilemodal"><i class="fa fa-pencil"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!----------------------------------------------------------------------EDIT POPUP START HERE------------------------------------------------------------->
+
+    <div class="myprofilemodal">
+      <div class="modal fade" id="editprofilemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 ml-4">My Profile</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mb-4">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-12 mb-5">
+                  <img src="../static/img/profile.jpg">
+                </div>
+                <div class="col-md-12">
+                  <form>
+                    <div class="form-row">
+                      <div class="col-md-6">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="First name">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="Last name">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form mt-0">
+                          <input class="datepicker" id="input" width="238" />
+                          <script>
+                            $('#input').datepicker({
+                              footer: true,
+                              modal: true
+                            });
+
+                          </script>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form mt-0">
+                          <div class="form-group">
+                            <select class="custom-select browser-default" required>
+                              <option value="">Gender</option>
+                              <option value="1">Male</option>
+                              <option value="2">Female</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="State">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="Country">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="Pin Code">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="Phone Number">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="md-form form-group mt-0">
+                          <input type="text" class="form-control" placeholder="Email">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <select class="custom-select browser-default" required>
+                            <option value="">Department</option>
+                            <option value="1">Web Development</option>
+                            <option value="2">Python Developer</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <select class="custom-select browser-default" required>
+                            <option value="">Designation</option>
+                            <option value="1">UI Developer</option>
+                            <option value="2">Python Developer</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="detailsubmit">
+                          <button>Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------EDIT POPUP CLOSE HERE---------------------------->
+
+  </div>
+  <!---------------------------------CARD DIV CLOSE HERE--------------------->
+
+</div>
+<!----------------------------------CONTAINER FLUID CLOSE HERE------------------>
+
+<!--------------------------------------------------------------------MY PROFILE CLOSED HERE------------------------------------------------------------------->
+
+<!----------------------------------------------------------------------NAV TAB START HERE----------------------------------------------------------->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="detail-tab">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"><i class="fa fa-user pr-3 fa-2x fonticon"></i>Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" id="project-tab" data-toggle="tab" href="#project"><i class="fa fa-desktop pr-3 fa-2x fonticon"></i>Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" id="bank-tab" data-toggle="tab" href="#bank"><i class="fa fa-hand-o-right pr-3 fa-2x fonticon"></i>Bank & Statory</a>
+          </li>
+        </ul>
+        <div class="tab-content mt-4" id="myTabContent">
+          <div class="tab-pane active" id="profile">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title font-weight-bold float-left">Personal Information</h4>
+                      <div class="editmodelbtn">
+                        <button class="float-right" data-toggle="modal" data-target="#personalinformationmodal"><i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="profile-detail">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="detail-list">
+                                <li>
+                                  <div class="title">Father Name:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Mother Name:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Personal Email:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Address:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Nationality:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Metirial Status:</div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="detail-list">
+                                <li>
+                                  <div class="text">John Doe</div>
+                                </li>
+                                <li>
+                                  <div class="text">qwwer</div>
+                                </li>
+                                <li>
+                                  <div class="text">johndoe@gmail.com</div>
+                                </li>
+                                <li>
+                                  <div class="text">#3432 Sector = 22D Chandigarh</div>
+                                </li>
+                                <li>
+                                  <div class="text">Indian</div>
+                                </li>
+                                <li>
+                                  <div class="text">Unmarried</div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-------------------------------------------------------------------PERSONAL INFORMATION TAB CLOSE HERE----------------------------------------------->
+
+                <!----------------------------------------------------------------------EDIT POPUP START HERE---------------------------------------------------------->
+
+                <div class="myprofilemodal">
+                  <div class="modal fade" id="personalinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                          <h4 class="modal-title w-100 ml-4 mt-4">Personal Information</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body mx-5 mb-4">
+                          <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-md-12">
+                              <form>
+                                <div class="form-row">
+                                  <div class="col-md-6">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Mother Name">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Father Name">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Personal Email ID">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Parmanant Address">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Nationality">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <select class="custom-select browser-default">
+                                        <option value="">Department</option>
+                                        <option value="1">Web Development</option>
+                                        <option value="2">Python Developer</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="detailsubmit">
+                                      <button>Submit</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---------------------------------------------EDIT POPUP CLOSE HERE---------------------------->
+
+                <!------------------------------------------------------------------EMERGENCY CONTACT START HERE------------------------------------------------>
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title font-weight-bold float-left">Emergency Contact</h4>
+                      <div class="editmodelbtn">
+                        <button class="float-right" data-toggle="modal" data-target="#emergencyinformationmodal"><i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="profile-detail">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-5">
+                              <ul class="detail-list">
+                                <li>
+                                  <div class="title">Primary Name:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Relationship:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Phone:</div>
+                                </li>
+                                <li>
+                                  <hr>
+                                  <div class="title">Secondary</div>
+                                </li>
+                                <li>
+                                  <div class="title">Relationship</div>
+                                </li>
+                                <li>
+                                  <div class="title">Phone</div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-md-5">
+                              <ul class="detail-list">
+                                <li>
+                                  <div class="text">John Doe</div>
+                                </li>
+                                <li>
+                                  <div class="text">Father</div>
+                                </li>
+                                <li>
+                                  <div class="text">85411313131</div>
+                                </li>
+                                <li>
+                                  <hr>
+                                  <div class="text">Karan</div>
+                                </li>
+                                <li>
+                                  <div class="text">Brother</div>
+                                </li>
+                                <li>
+                                  <div class="text">5646464654</div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--------------------------------------------------------------EMERGENCY CONTACT CLOSED HERE------------------------------------------------------->
+
+                <!----------------------------------------------------------------------EDIT POPUP START HERE------------------------------------------------------------->
+
+                <div class="myprofilemodal">
+                  <div class="modal fade" id="emergencyinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                          <h4 class="modal-title w-100 ml-4 mt-4">Emergency Contact</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body mx-5 mb-4">
+                          <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-md-12">
+                              <form>
+                                <div class="form-row">
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Primary Name">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Relationship">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Phone">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="detailsubmit">
+                                      <button>Submit</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---------------------------------------------EDIT POPUP CLOSE HERE---------------------------->
+              </div>
+            </div>
+
+            <!--------------------------------------------------------------BANK INFORMATION START HERE---------------------------------------------------------------------->
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title font-weight-bold float-left">Bank Information</h4>
+                      <div class="editmodelbtn">
+                        <button class="float-right" data-toggle="modal" data-target="#bankinformationmodal"><i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="profile-detail">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <ul class="detail-list">
+                                <li>
+                                  <div class="title">Bank Name:</div>
+                                </li>
+                                <li>
+                                  <div class="title">Account No:</div>
+                                </li>
+                                <li>
+                                  <div class="title">IFSC Code:</div>
+                                </li>
+                                <li>
+                                  <div class="title">PAN NO:</div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="col-md-6">
+                              <ul class="detail-list">
+                                <li>
+                                  <div class="text">ICICI Bank</div>
+                                </li>
+                                <li>
+                                  <div class="text">444545464646684</div>
+                                </li>
+                                <li>
+                                  <div class="text">IC1245046</div>
+                                </li>
+                                <li>
+                                  <div class="text">TC000Y56</div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-------------------------------------------------------------------BANK INFORMATION TAB CLOSE HERE-------------------------------------------------->
+
+
+                <!----------------------------------------------------------------------EDIT POPUP START HERE------------------------------------------------------------->
+
+                <div class="myprofilemodal">
+                  <div class="modal fade" id="bankinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                          <h4 class="modal-title w-100 ml-4 mt-4">Bank Information</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body mx-5 mb-4">
+                          <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-md-12">
+                              <form>
+                                <div class="form-row">
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Bank Name">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Account No">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="IFSC Code">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="PAN NO">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="detailsubmit">
+                                      <button>Submit</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---------------------------------------------EDIT POPUP CLOSE HERE---------------------------->
+
+                <!------------------------------------------------------------------FAMILY INFORMATION START HERE------------------------------------------------>
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title font-weight-bold float-left">Family Information</h4>
+                      <div class="editmodelbtn">
+                        <button class="float-right" data-toggle="modal" data-target="#familyinformationmodal"><i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="personal-information">
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" class="font-weight-bold">Name</th>
+                                      <th scope="col" class="font-weight-bold">Relationship</th>
+                                      <th scope="col" class="font-weight-bold">Date of Birth</th>
+                                      <th scope="col" class="font-weight-bold">Phone</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Sunil Doe</td>
+                                      <td>Karan Doe</td>
+                                      <td>12th-Feb-1986</td>
+                                      <td>13th-March-1993</td>
+                                      <td><i class="fa fa-ellipsis-v"></i></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Father</td>
+                                      <td>Brother</td>
+                                      <td>45465464464</td>
+                                      <td>45465464464</td>
+                                      <td><i class="fa fa-ellipsis-v"></i></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--------------------------------------------------------------FAMILY INFORMATION CONTACT CLOSE HERE------------------------------------------------------->
+
+                <!----------------------------------------------------------------------EDIT POPUP START HERE------------------------------------------------------------->
+
+                <div class="myprofilemodal">
+                  <div class="modal fade" id="familyinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                          <h4 class="modal-title w-100 ml-4 mt-4">Family Information</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body mx-5 mb-4">
+                          <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-md-12">
+                              <form>
+                                <div class="form-row">
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Relationship">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Date of Birth">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Phone">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="detailsubmit">
+                                      <button>Submit</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---------------------------------------------EDIT POPUP CLOSE HERE---------------------------->
+              </div>
+            </div>
+
+            <!--------------------------------------------------------------EDUCATION INFORMATION START HERE---------------------------------------------------------------------->
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title font-weight-bold float-left">Education Information</h4>
+                      <div class="editmodelbtn">
+                        <button class="float-right" data-toggle="modal" data-target="#educationinformationmodal"><i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="profile-detail">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="education-information">
+                                <h4>International College of Arts and Science(UG)<br><span>Bsc.Computer Science<br>2000-2003</span></h4>
+                                <h4>International College of Art and Science(PG)<br><span>Bsc.Computer Science<br>2000-2003</span></h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-------------------------------------------------------------------EDUCATION INFORMATION TAB CLOSE HERE-------------------------------------------------->
+
+                <!----------------------------------------------------------------------EDIT POPUP START HERE------------------------------------------------------------->
+
+                <div class="myprofilemodal">
+                  <div class="modal fade" id="educationinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header text-center">
+                          <h4 class="modal-title w-100 ml-4 mt-4">Education Information</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body mx-5 mb-4">
+                          <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-md-12">
+                              <form>
+                                <div class="form-row">
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Relationship">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Date of Birth">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6  mx-auto">
+                                    <div class="md-form form-group mt-0">
+                                      <input type="text" class="form-control" placeholder="Phone">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                    <div class="detailsubmit">
+                                      <button>Submit</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!---------------------------------------------EDIT POPUP CLOSE HERE---------------------------->
+
+                <!------------------------------------------------------------------EXPERIENCE SECTION START HERE------------------------------------------------>
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title font-weight-bold float-left">Experience</h4>
+                      <div class="editmodelbtn">
+                        <button class="float-right" data-toggle="modal" data-target="#experienceinformationmodal"><i class="fa fa-pencil"></i></button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="education-information">
+                              <h4>Web Designer at Zen Carporation</h4><br>
+                              <h4>Jan 2013-Present(5years 2Months)</h4>
+                              <h4>Web Designer at Zen Carporation</h4><br>
+                              <h4>Jan 2013-Present(5years 2Months)</h4>
+                              <h4>Web Designer at Zen Carporation</h4><br>
+                              <h4>Jan 2013-Present(5years 2Months)</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!--------------------------------------------------------------EXPERIENCE SECTION CLOSE HERE------------------------------------------------------->
+              </div>
+            </div>
+
+          </div>
+          <!-----------------------------------------------------------PROFILE TAB CLOSE HERE------------------------------------------------------------->
+          <div class="tab-pane" id="project">Food truck fixie
+            locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit,
+            blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+            Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
+            PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
+            salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
+            sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
+          <div class="tab-pane" id="bank">Etsy mixtape
+            wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack
+            lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard
+            locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify
+            squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie
+            etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog
+            stumptown. Pitchfork sustainable tofu synth chambray yr.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+  $(document).ready(function() {
+    $('.datepicker').pickadate();
+    $('.mdb-select').material_select();
+  });
+
+</script>
+{% endblock %}

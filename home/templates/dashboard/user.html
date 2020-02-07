@@ -1,0 +1,425 @@
+{% extends 'dashboard/base.html' %}{% block content %}{% if request.session.user_role_id == 1 %}
+<!-- main container-->
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-2">
+      <div class="card card-plain">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title float-left"><strong>Users</strong></h3><button class="addbtn float-right" type="button" data-toggle="collapse" data-target="#adduser" aria-expanded="false" aria-controls="adduser"><i class="fa fa-plus pr-2"></i>Add User</button>
+        </div>
+        <div class="card-body "> {% if user_added %} <div class="alert alert-default alert-dismissible fade show" role="alert"><strong>New User added successfully !</strong><strong class="text-danger pl-3">Employee ID : {{ latest_added_emp }}</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div> {% endif %} </div>
+      </div>
+    </div><!-- col-12 mb-2 -->
+    <div class="col-12">
+      {% if role_not_selected or form.errors or email_already_exists or passwrd_err %}
+      <div class="active" id="adduser">
+        {% else %}
+        <div class="collapse" id="adduser">
+          {% endif %} <div class="mt-3">
+            <!-- add user form -->
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header card-header-primary">
+                    <h4 class="card-title">ADD USER</h4>
+                    <p class="card-category"></p>
+                  </div>
+                  <div class="card-body">
+                    <form method="post" novalidate> {% csrf_token %} <div class="row">
+                        <div class="col-6">
+                          <div class="form-group"><label class="bmd-label-floating">First Name</label> {{ form.user_firstname }}
+                            <div style="color:red">
+                              <p>{{ form.user_firstname.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="form-group"><label class="bmd-label-floating">Last Name</label> {{ form.user_lastname }}
+                            <div style="color:red">
+                              <p>{{ form.user_lastname.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group"><label class="bmd-label-floating">E-mail</label> {{ form.user_email }} {% if email_already_exists %} <p style="color:red">** Email already exists</p> {% endif %} <div style="color:red">
+                              <p>{{ form.user_email.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group"><label class="bmd-label-floating">Username</label> {{ form.username }}
+                            <div style="color:red">
+                              <p>{{ form.username.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="form-group"><label class="bmd-label-floating">Phone Number</label> {{ form.user_phone }}
+                            <div style="color:red">
+                              <p>{{ form.user_phone.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group"><label class="bmd-label-floating">Company</label><input type="text" class="form-control" readonly value="{{ request.session.user_email }}" name="company_email"></div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group"><label class="bmd-label-floating">Password</label><input type="password" class="form-control" name="first_password"> {% if passwrd_err %} <p style="color:red">**password not matches</p> {% endif %} <div style="color:red">
+                              <p>{{ form.user_password.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group"><label class="bmd-label-floating">Confirm Password</label> {{ form.user_password }} {% if passwrd_err %} <p style="color:red">**password not matches</p> {% endif %} <div style="color:red">
+                              <p>{{ form.user_password.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group"><select class="browser-default custom-select" name="role_selected">
+                              <option disabled selected>-- Select Role --</option> {% for role in profile_roles %} <option value="{{ role.role_id }}">{{ role.role_name }}</option> {% endfor %}
+                            </select> {% if role_not_selected %} <p style="color:red">** Role not selected</p> {% endif %} <div style="color:red">
+                              <p>{{ form.user_employee_id.errors }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- roles and permission table -->
+                      <div class="table-responsive">
+                        <table class="table table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Module Permission</th>
+                              <th scope="col">Read</th>
+                              <th scope="col">Edit</th>
+                              <th scope="col">Create</th>
+                              <th scope="col">Delete</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Employee</td>
+                              <td><input type="checkbox" name="employee_read" value="1"><br></td>
+                              <td><input type="checkbox" name="employee_write" value="1"></td>
+                              <td><input type="checkbox" name="employee_create" value="1"></td>
+                              <td><input type="checkbox" name="employee_delete" value="1"></td>
+                            </tr>
+                            <tr>
+                              <td>Holidays</td>
+                              <td><input type="checkbox" name="holidays_read" value="1"><br></td>
+                              <td><input type="checkbox" name="holidays_write" value="1"></td>
+                              <td><input type="checkbox" name="holidays_create" value="1"></td>
+                              <td><input type="checkbox" name="holidays_delete" value="1"></td>
+                            </tr>
+                            <tr>
+                              <td>Leaves</td>
+                              <td><input type="checkbox" name="leaves_read" value="1"><br></td>
+                              <td><input type="checkbox" name="leaves_write" value="1"></td>
+                              <td><input type="checkbox" name="leaves_create" value="1"></td>
+                              <td><input type="checkbox" name="leaves_delete" value="1"></td>
+                            </tr>
+                            <tr>
+                              <td>Events</td>
+                              <td><input type="checkbox" name="event_read" value="1"><br></td>
+                              <td><input type="checkbox" name="event_write" value="1"></td>
+                              <td><input type="checkbox" name="event_create" value="1"></td>
+                              <td><input type="checkbox" name="event_delete" value="1"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <button type="submit" class="btn btn-danger btn-lg">Add User</button>
+                      <div class="clearfix"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center-dept z-depth-5">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="font-weight-bold">Emp. Id</th>
+                <th class="font-weight-bold">Firstname</th>
+                <th class="font-weight-bold">Lastname</th>
+                <th class="font-weight-bold">Email</th>
+                <th class="font-weight-bold">Company</th>
+                <th class="font-weight-bold">Phone</th>
+                <th class="float-right font-weight-bold">Action</th>
+              </tr>
+            <tbody> {% for i in added_users_data %} <tr>
+                <th scope="row">{{ i.user_employee_id }}</th>
+                <td>{{ i.user_firstname }}</td>
+                <td>{{ i.user_lastname }}</td>
+                <td>{{ i.user_email }}</td>
+                <td>{{ i.user_company }}</td>
+                <td>{{ i.user_phone }}</td>
+                <td class="float-right">
+                  <a href="/user-profile-details?user-id={{ i.employee_employee_id }}" class="btn btn-sm btn-info">EDIT</a>
+                  <a data-toggle="modal" data-target="#modalLoginForm" class="btn btn-sm btn-danger">DELETE</a>
+                </td>
+              </tr> {% endfor %} </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Are you sure to delete?</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <button class="btn btn-danger">Confirm</button>
+            </form>
+             <form class="pl-3">
+            <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </form>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  {% endif %}
+  {% if request.session.user_role_id == 2 %} <div class="container">
+    <div class="row">
+      <div class="col-12 mb-2">
+        <div class="card card-plain">
+          <div class="card-header card-header-primary">
+            <h3 class="card-title float-left"><strong>Employees</strong></h3><button class="addbtn float-right" type="button" data-toggle="collapse" data-target="#addemp" aria-expanded="false" aria-controls="addemp"><i class="fa fa-plus pr-2"></i>Add employee</button>
+          </div>
+          <div class="card-body ">
+            {% if user_added %}
+            <div class="alert alert-default alert-dismissible fade show" role="alert"><strong>New Employee added successfully !</strong><strong class="pl-3 text-danger">Employee ID : {{ latest_employee_id }}</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        {% if form.errors or passwrd_err or department_not_selected or designation_not_selected or email_already_exists %}
+        <div class="active" id="addemp">
+          {% else %}
+          <div class="collapse" id="addemp">
+            {% endif %}
+            <div class="mt-3">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title">ADD EMPLOYEE</h4>
+                      <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                      <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group"><label class="bmd-label-floating">First Name</label>
+                              {{ form.employee_firstname }}
+                              <div style="color:red">
+                                <p>{{ form.employee_firstname.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group"><label class="bmd-label-floating">Last Name</label>
+                              {{ form.employee_lastname }}
+                              <div style="color:red">
+                                <p>{{ form.employee_lastname.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group"><label class="bmd-label-floating">E-mail</label>
+                              {{ form.employee_official_email }}
+                              {% if email_already_exists %} <p style="color:red">** Email already exists</p>
+                              {% endif %}
+                              <div style="color:red">
+                                <p>{{ form.employee_official_email.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Username</label>
+                              {{ form.employee_username }}
+                              <div style="color:red">
+                                <p>{{ form.employee_username.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Phone Number</label> {{ form.employee_phone }}
+                              <div style="color:red">
+                                <p>{{ form.employee_phone.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Password</label>
+                              <input type="password" class="form-control" name="first_password">
+                              {% if passwrd_err %}
+                              <p style="color:red">**password not matches</p>
+                              {% endif %}
+                              <div style="color:red">
+                                <p>{{ form.employee_password.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Confirm Password</label>
+                              {{ form.employee_password }}
+                              {% if passwrd_err %}
+                              <p style="color:red">**password not matches</p>
+                              {% endif %}
+                              <div style="color:red">
+                                <p>{{ form.employee_password.errors }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <select class="browser-default custom-select" id="selected_department" name="selected_department">
+                                <option value="" disabled selected>-- Select Department --</option>
+                                {% for department in departments %}
+                                <option value="{{ department.department_id }}">
+                                  {{ department.department_name }}</option>
+                                {% endfor %}
+                              </select>
+                              {% if department_not_selected %}
+                              <p style="color:red;"> ** department not selected </p>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <select class="browser-default custom-select" id="selected_designation" name="selected_designation">
+                                <option value="0" disabled selected>-- Select Department First --</option>
+                              </select>
+                              {% if designation_not_selected %}
+                              <p style="color:red;"> ** Designation not selected </p>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div><button type="submit" class="btn btn-danger btn-lg">Add Employee</button>
+                        <div class="clearfix"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center-dept z-depth-5">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="font-weight-bold">Emp. Id</th>
+                  <th class="font-weight-bold">Firstname</th>
+                  <th class="font-weight-bold">Lastname</th>
+                  <th class="font-weight-bold">Email</th>
+                  <th class="font-weight-bold">Company</th>
+                  <th class="font-weight-bold">Phone</th>
+                  <th class="font-weight-bold">Department</th>
+                  <th class="font-weight-bold">Designation</th>
+                  <th class="font-weight-bold">Termination Status</th>
+                  <th class="float-right font-weight-bold">Action</th>
+                </tr>
+              <tbody> {% for i in added_emp_data %} <tr>
+                  <th scope="row">{{ i.employee_employee_id }}</th>
+                  <td>{{ i.employee_firstname }}</td>
+                  <td>{{ i.employee_lastname }}</td>
+                  <td>{{ i.employee_official_email }}</td>
+                  <td>{{ i.employee_company }}</td>
+                  <td>{{ i.employee_phone }}</td>
+                  <td>{{ i.department_id.department_name }}</td>
+                  <td>{{ i.designation_id.designation_name }}</td>
+                  <td>{{ i.is_terminated }}</td>
+                  <td class="float-right">
+
+                    <a href="/user-profile-details?user-id={{ i.employee_employee_id }}" class="btn btn-danger">EDIT | DELETE</a>
+
+                  </td>
+                </tr> {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endblock %}
+    {% block js %}
+    <script>
+      $('#selected_department').change(function() {
+        var selected_id = $(this).val();
+        $.ajax({
+          type: 'GET',
+          url: '/designationdetails',
+          data: {
+            selected_department_id: selected_id
+          },
+          success: successfunc
+        })
+
+        function successfunc(data) {
+          $('#selected_designation').empty();
+          $('#selected_designation').append($("<option disabled selected >").val(0).text('-- Select Designation --'));
+          $.each(data, function(i, data) {
+            $('<option>', {
+              value: i,
+              text: data,
+            }).appendTo('#selected_designation')
+          })
+        }
+      });
+
+    </script>
+    {% endblock %}

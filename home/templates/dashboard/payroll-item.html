@@ -1,0 +1,659 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mb-5">
+      <h3 class="float-left mt-0"><strong>Payroll Items</strong></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="payrol-item-section">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="additions-tab" data-toggle="tab" href="#additions">Additions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="overtime-tab" data-toggle="tab" href="#overtime">Overtime</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="dituctions-tab" data-toggle="tab" href="#dituctions">Dituctions</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane active" id="additions">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <button class="addbtn float-right" data-toggle="modal" data-target="#addadditionmodel"><i class="fa fa-plus pr-2"></i>Add Additions</button>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Category</th>
+                          <th scope="col">Default/Unit Amount</th>
+                          <th scope="col" class="float-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Leave balance amount</td>
+                          <td>Monthly remuneration</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editadditionmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#additionmodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Advance</td>
+                          <td>Additional remuneration</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editadditionmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#additionmodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Gratuity</td>
+                          <td>Monthly remuneration</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editadditionmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#additionmodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-------------------------------------------------------------------ADDITION TAB CLOSE HERE--------------------------------------------->
+
+          <div class="tab-pane" id="overtime">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <button class="addbtn float-right" data-toggle="modal" data-target="#overtimemodel"><i class="fa fa-plus pr-2"></i>Add Overtime</button>
+                </div>
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Rate</th>
+                          <th scope="col" class="float-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Leave balance amount</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editovertimemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#overtimemodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Advance</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editovertimemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#overtimemodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Gratuity</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editovertimemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#overtimemodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--------------------------------------------------------------------------OVERTIME TAB CLOSE HERE-------------------------------------->
+
+          <div class="tab-pane" id="dituctions">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <button class="addbtn float-right" data-toggle="modal" data-target="#deductonmodel"><i class="fa fa-plus pr-2"></i>Add Dituctions</button>
+                </div>
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Default/Unit Amount</th>
+                          <th scope="col" class="float-right">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Leave balance amount</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editdeductonmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deductionmodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Advance</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editdeductonmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deductionmodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Gratuity</td>
+                          <td>$12</td>
+                          <td class="float-right">
+                            <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="editbtn"><i class="fa fa-ellipsis-v"></i></button></a>
+                            <div class="dropdown-menu mr-5">
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editdeductonmodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deductionmodeldelete"><i class="fa fa-trash pr-2"></i>Delete</a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------------------------------------------------------DITUCTION TAB CLOSE HERE-------------------------------------------------->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--------------------------------------------------------ADD  MODEL START HERE----------------------------------------------------------->
+  <div class="payroll-item-model">
+    <div class="modal fade" id="addadditionmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Addition</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label>Category</label>
+                  <select class="custom-select browser-default" required>
+                    <option value="1">Web Development</option>
+                    <option value="2">Python Developer</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-2">Unit calculation</label>
+                <label class="switch mb-4">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-3">Unit Amount</label>
+                <!-- Default inline 1-->
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="noassigneeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="noassigneeradio">No assignee </label>
+                </div>
+
+                <!-- Default inline 2-->
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="allemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="allemployeeradio">All employees </label>
+                </div>
+
+                <!-- Default inline 3-->
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="selectemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="selectemployeeradio">Select Employee</label>
+                </div>
+                <select class="custom-select mt-4 mb-4" required>
+                  <option value="1">Select All</option>
+                  <option value="2">John Doe</option>
+                  <option value="3">John Doe</option>
+                  <option value="4">John Doe</option>
+                </select>
+              </div>
+              <button class="dept-save">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------ADD MODEL CLOSED HERE----------------------------------------------->
+
+
+  <!--------------------------------------------------------EDIT MODEL START HERE----------------------------------------------------------->
+  <div class="payroll-item-model">
+    <div class="modal fade" id="editadditionmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Addition</h4>
+            <button class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label>Category</label>
+                  <select class="custom-select browser-default" required>
+                    <option value="1">Web Development</option>
+                    <option value="2">Python Developer</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-2">Unit calculation</label>
+                <label class="switch mb-4">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-3">Unit Amount</label>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="noassigneeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="noassigneeradio">No assignee </label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="allemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="allemployeeradio">All employees </label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="selectemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="selectemployeeradio">Select Employee</label>
+                </div>
+                <select class="custom-select mt-4 mb-4" required>
+                  <option value="1">Select All</option>
+                  <option value="2">John Doe</option>
+                  <option value="3">John Doe</option>
+                  <option value="4">John Doe</option>
+                </select>
+              </div>
+              <button class="dept-save">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------EDIT MODEL CLOSED HERE----------------------------------------------->
+
+  <!--------------------------------------------------------OVERTIME MODEL START HERE----------------------------------------------------------->
+  <div class="payroll-item-model">
+    <div class="modal fade" id="overtimemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Overtime</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label>Rate Type</label>
+                  <select class="custom-select browser-default" required>
+                    <option value="1">Daily Rate</option>
+                    <option value="2">Hourly Rate</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <label>Rate</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+              <button class="dept-save">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------OVERTIME MODEL CLOSED HERE----------------------------------------------->
+
+  <!--------------------------------------------------------EDIT OVERTIME MODEL START HERE----------------------------------------------------------->
+  <div class="payroll-item-model">
+    <div class="modal fade" id="editovertimemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Overtime</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+
+              <div class="col-md-12 mb-4">
+                <div class="form-group">
+                  <label>Rate Type</label>
+                  <select class="custom-select browser-default" required>
+                    <option value="1">Daily Rate</option>
+                    <option value="2">Hourly Rate</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <label>Rate</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+              <button class="dept-save">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------EDIT OVERTIME MODEL CLOSED HERE----------------------------------------------->
+
+
+  <!--------------------------------------------------------ADD DEDUCTION MODEL START HERE----------------------------------------------------------->
+  <div class="payroll-item-model">
+    <div class="modal fade" id="deductonmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Deduction</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-2">Unit calculation</label>
+                <label class="switch mb-4">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-3">Unit Amount</label>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="noassigneeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="noassigneeradio">No assignee </label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="allemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="allemployeeradio">All employees </label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="selectemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="selectemployeeradio">Select Employee</label>
+                </div>
+                <select class="custom-select mt-4 mb-4" required>
+                  <option value="1">Select All</option>
+                  <option value="2">John Doe</option>
+                  <option value="3">John Doe</option>
+                  <option value="4">John Doe</option>
+                </select>
+              </div>
+              <button class="dept-save">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------ADD DEDUCTION MODEL CLOSED HERE----------------------------------------------->
+
+
+  <!--------------------------------------------------------EDIT DEDUCTION MODEL START HERE----------------------------------------------------------->
+  <div class="payroll-item-model">
+    <div class="modal fade" id="editdeductonmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Add Deduction</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4">
+            <form>
+              <div class="col-md-12">
+                <label>Name</label>
+                <input type="text" class="form-control mb-4" placeholder="">
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-2">Unit calculation</label>
+                <label class="switch mb-4">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label class="d-block mb-3">Unit Amount</label>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="noassigneeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="noassigneeradio">No assignee </label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="allemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="allemployeeradio">All employees </label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="selectemployeeradio" name="inlineradioinput">
+                  <label class="custom-control-label" for="selectemployeeradio">Select Employee</label>
+                </div>
+                <select class="custom-select mt-4 mb-4" required>
+                  <option value="1">Select All</option>
+                  <option value="2">John Doe</option>
+                  <option value="3">John Doe</option>
+                  <option value="4">John Doe</option>
+                </select>
+              </div>
+              <button class="dept-save">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------EDIT DEDUCTION MODEL CLOSED HERE--------------------------------------->
+  <!---------------------------------------------------------------------------ADDITION MODEL START HERE----------------------------------------------->
+  <div class="department-input">
+    <div class="modal fade" id="additionmodeldelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Delete Addition</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4 mb-4">
+            <p>Are you sure want to delete?</p>
+            <div class="select-btn mx-auto">
+              <button class="deletetbtn">Delete</button>
+              <button class="deletetbtn ml-3">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------ADDITION MODEL CLOSED HERE----------------------------------------------->
+  <div class="department-input">
+    <div class="modal fade" id="overtimemodeldelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Delete Overtime</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4 mb-4">
+            <p>Are you sure want to delete?</p>
+            <div class="select-btn mx-auto">
+              <button class="deletetbtn">Delete</button>
+              <button class="deletetbtn ml-3">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------OVERTIME MODEL CLOSED HERE----------------------------------------------->
+  <div class="department-input">
+    <div class="modal fade" id="deductionmodeldelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Delete Deduction</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-5 mt-4 mb-4">
+            <p>Are you sure want to delete?</p>
+            <div class="select-btn mx-auto">
+              <button class="deletetbtn">Delete</button>
+              <button class="deletetbtn ml-3">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---------------------------------------------------------------------------DEDUCTION DELETE MODEL CLOSED  HERE------------------------------------>
+</div>
+
+{% endblock %}

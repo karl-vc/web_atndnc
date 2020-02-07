@@ -1,0 +1,322 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mb-5">
+      <h3 class="float-left mt-0"><strong>Leaves</strong></h3>
+      {% if not deny_permission %}
+      <button class="addbtn float-right" data-toggle="modal" data-target="#addleavetypemodel"><i class="fa fa-plus pr-2"></i>Multiple Days Leave</button>
+
+      <button class="addbtn float-right" data-toggle="modal" data-target="#one_day_Leave"><i class="fa fa-plus pr-2"></i>One day leave </button>
+      <button class="addbtn float-right" data-toggle="modal" data-target="#half_day_Leave"><i class="fa fa-plus pr-2"></i>Half day leave </button>
+      <button class="addbtn float-right" data-toggle="modal" data-target="#shortLeave"><i class="fa fa-plus pr-2"></i>Short Leave</button>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Annual Leave<br><span>12</span></h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Medical Leave<br><span>3</span></h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Other Leave<br><span>4</span></h5>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="leave-section">
+        <h5>Remaining Leave<br><span>5</span></h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="admin-detail-section">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="table-heading">
+                <th scope="col">Leave Type</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col" class="date-row">No. of Days</th>
+                <th scope="col">Reason</th>
+                <th scope="col">Status</th>
+                <th scope="col">Approved By</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Casual Leave</td>
+                <td>27-Feb-2019</td>
+                <td>27-Feb-2019</td>
+                <td>2 Day</td>
+                <td>Going to Hospital</td>
+                <td><button class="leave-appr">Approved</button></td>
+                <td class="pt-2">
+                  <h2 class="table-pic">
+                    <a><img src="/static/img/profile11.png" class="pr-3"></a>
+                    <a>John<br><span>Web Developer</span></a>
+                  </h2>
+                </td>
+                <td>
+                  <a class="mr-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><button class="requestbtn">Request</button></a>
+                  <div class="dropdown-menu mr-5">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#admineditleavemodel"><i class="fa fa-pencil pr-2"></i>Edit</a>
+                  </div>
+                </td>
+              </tr>
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- short leave -->
+    <!--ADD LEAVE MODEL START HERE-->
+    <div class="wrap-model">
+      <div class="modal fade" id="shortLeave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Short Leave for Today</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4">
+              <form method="post">
+
+
+                {% csrf_token %}
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="addleavetype">Reason</label>
+                    <textarea class="form-control rounded-0" name="short_leave_reason" id="exampleFormControlTextarea1" rows="4"></textarea></div>
+                </div>
+
+                <button class="dept-save" type="submit" name="short_leave">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ADD LEAVE MODEL CLOSED HERE-    
+    <!-- /short leave -->
+
+
+
+    <!-- one day leave -->
+
+    <div class="wrap-model">
+      <div class="modal fade" id="one_day_Leave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">One Day Leave</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4">
+              <form method="post">
+
+
+                {% csrf_token %}
+                
+                <div class="col-md-12">
+                  <label for="addleavetype">Leave Type</label>
+                  <select class="browser-default custom-select" name="one_day_leave_type">
+                    <option selected disabled>-- Select-- </option>
+                    <option value="Casual">Casual</option>
+                    <option value="Medical">Medical</option>
+                   
+                  </select>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <label for="for_one_day">Date</label>
+                  <input class="datepicker" id=for_one_day width="461" name="one_day_leave_date"/>
+                  <script>
+                    $('#for_one_day').datepicker({
+                      footer: true,
+                      modal: true
+                    });
+
+                  </script>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="addleavetype">Reason</label>
+                    <textarea class="form-control rounded-0" name="reason" id="exampleFormControlTextarea1" rows="4"></textarea></div>
+                </div>
+
+                <button class="dept-save" type="submit" name="one_day_leave">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- / one day leave -->
+
+    <!-- half day leave -->
+
+    <div class="wrap-model">
+      <div class="modal fade" id="half_day_Leave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Half Day Leave</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4">
+              <form method="post">
+
+
+                {% csrf_token %}
+                <div class="col-md-12">
+                  <label for="addleavetype">Leave Type</label>
+                  <select class="browser-default custom-select" name="half_day_leave_type">
+                    <option selected disabled>-- Select-- </option>
+                    <option value="Casual">Casual</option>
+                    <option value="Medical">Medical</option>
+                   
+                  </select>
+                </div>
+                
+                <div class="col-md-12 mb-4">
+                  <label for="hald_day_leave_date">Date</label>
+                  <input class="datepicker" id="hald_day_leave_date" name="half_day_date" width="461" />
+                  <script>
+                    $('#hald_day_leave_date').datepicker({
+                      footer: true,
+                      modal: true
+                    });
+
+                  </script>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="addleavetype">Reason</label>
+                    <textarea class="form-control rounded-0" name="reason" id="exampleFormControlTextarea1" rows="4"></textarea></div>
+                </div>
+
+                <button class="dept-save" type="submit" name="half_day_leave">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- / half day leave -->
+
+
+    <!--ADD LEAVE MODEL START HERE-->
+    <div class="wrap-model">
+      <div class="modal fade" id="addleavetypemodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Add Leave</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mt-4">
+              <form method="post">
+                {% csrf_token %}
+                <div class="col-md-12">
+                  <label>Leave Type</label>
+                  <select class="browser-default custom-select" name="leave_type">
+                    <option selected disabled>-- Select-- </option>
+                    <option value="Casual">Casual</option>
+                    <option value="Medical">Medical</option>
+                   
+                  </select>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <label>From</label>
+                  <input class="datepicker addfromleavetype" width="461" name="from_date"/>
+                  <script>
+                    $('.addfromleavetype').datepicker({
+                      footer: true,
+                      modal: true
+                    });
+
+                  </script>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <label for="addtoleavetype">To</label>
+                  <input class="datepicker" id="addtoleavetype" name="to_date" width="461" />
+                  <script>
+                    $('#addtoleavetype').datepicker({
+                      footer: true,
+                      modal: true
+                    });
+
+                  </script>
+                </div>
+              
+                <div class="col-md-12">
+                  <label for="addtextarea">Leave Reason</label>
+                  <textarea id="addtextarea" class="form-control mb-4" name="reason" rows="6"></textarea>
+                </div>
+                <button class="dept-save" name="multiple_days" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ADD LEAVE MODEL CLOSED HERE-->
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tablecaption float-left">
+        <caption>Showing 1 to 10 of 12 entries</caption>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="pagination-section float-right">
+        <nav aria-label="Page navigation example pb-0">
+          <ul class="pagination pg-blue">
+            <li class="page-item"><a class="page-link">Previous</a></li>
+            <li class="page-item  active"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item"><a class="page-link">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

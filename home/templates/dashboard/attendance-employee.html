@@ -1,0 +1,227 @@
+{% extends 'dashboard/base.html' %}{% block content %}<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-12 mb-3">
+            <h3 class="float-left mt-0"><strong>Attendance</strong></h3>
+        </div>
+        <div class="col-md-4">
+            <div class="wrap-attandance">
+                <h5>Timesheet <span>{{ today }}</span></h5>
+                {% if punched_in %}
+                <div class="timeset-section">
+                    <p>Punch In at<br><span>{{ punched_data.punch_in }}{{ punched_in_data_time }}</span></p>
+                </div>
+                {% endif %}
+                {% if not login_first and punched_data_time and not punched_in %}
+                <div class="timeset-section">
+                    <p>Punch out at<br><span>{{ punched_data_time }}</span></p>
+                </div>
+                {% endif %}
+                {% if not login_first and not punched_in and not punched_data_time %} <div class="timeset-section">
+                    <p>Punch out at<br><span>{{ punched_data.punch_out }}</span></p>
+                </div> {% endif %}
+                <div class="center-section mb-4">
+                    <p id="abc"><time>00:00:00</time></p>
+                </div>
+                {% if punched_in %}
+                <!--form2-->
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="punch_out" id="stop">Punch Out</button>
+                </form>
+                {% elif not punched_in %}
+                <!--form 1-->
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="punch_in" id="start">Punch In</button>
+                </form>
+                {% endif %}
+                <div class="row text-center mb-3">
+                    <div class="col-md-6">
+                        <div class="left-wrap">
+                            <p class="mt-2">Break<br>1.21 hrs</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="left-wrap">
+                            <p class="mt-2">Break<br>1.21 hrs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="wrap-attandance">
+                <h5>Statistics</h5>
+                <div class="statistics-section mb-4">
+                    <div class="time-shedule mb-4">
+                        <p class="float-left">Today</p>
+                        <p class="float-right">3.45/Hours</p>
+                    </div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="second-statistics-section mb-4">
+                    <div class="time-shedule mb-4">
+                        <p class="float-left">This Week</p>
+                        <p class="float-right">3.45/Hours</p>
+                    </div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="third-statistics-section mb-4">
+                    <div class="time-shedule mb-4">
+                        <p class="float-left">This Month</p>
+                        <p class="float-right">3.45/Hours</p>
+                    </div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="forth-statistics-section mb-4">
+                    <div class="time-shedule mb-4">
+                        <p class="float-left">Remaining</p>
+                        <p class="float-right">3.45/Hours</p>
+                    </div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="fifth-statistics-section mb-4">
+                    <div class="time-shedule mb-4">
+                        <p class="float-left">Overtime</p>
+                        <p class="float-right">3.45/Hours</p>
+                    </div>
+                    <div class="progress progress-striped">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="wrap-attandance">
+                <h5>Today Activity</h5>
+                <ul class="list-group vertical-steps">
+                    {% for i in punch_in_data %}
+                    <li class="list-group-item">
+                        <p>Punch In at</p><span><i class="fa fa-clock-o pr-1"></i>{{ i.punch_in }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <p>Punch Out at </p><span><i class="fa fa-clock-o pr-1"></i>{{ i.punch_out }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="attendance-employee-section">
+                <div class="md-form mt-0"><input class="datepicker" id="addpromotionmodel" width="218" />
+                    <script>
+                        $('#addpromotionmodel').datepicker({
+                            footer: true,
+                            modal: true
+                        });
+
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="attendance-section"><select class="selectbox mb-5 mdb-select md-form md-outline colorful-select dropdown-primary">
+                    <option value="" disabled selected>Select Month</option>
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                </select></div>
+        </div>
+        <div class="col-md-3">
+            <div class="attendance-section"><select class="selectbox mb-5 mdb-select md-form md-outline colorful-select dropdown-primary">
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1">2015</option>
+                    <option value="2">2016</option>
+                    <option value="3">2017</option>
+                    <option value="4">2018</option>
+                    <option value="5">2019</option>
+                    <option value="6">2020</option>
+                </select></div>
+        </div>
+        <div class="col-md-3"><button class="search-btn mb-5">Search</button></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="timetable">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date (Day/Month/Year) </th>
+                                <th scope="col">Punch In</th>
+                                <th scope="col">Punch Out</th>
+                                <th scope="col">Production</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in all_punching_data %}
+                            <tr>
+                                <td>{{ i.db_date }}</td>
+                                <td>{{ i.punch_in }}</td>
+                                <td>{{ i.punch_out }}</td>
+                                <td>{{ i.total_hours }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    var h1 = document.getElementById('abc'.),
+        start = document.getElementById('start'),
+        stop = document.getElementById('stop'),
+        clear = document.getElementById('clear'),
+        seconds = 0,
+        minutes = 0,
+        hours = 0,
+        t;
+
+    function add() {
+        seconds++;
+        if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+                minutes = 0;
+                hours++;
+            }
+        }
+        h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+        timer();
+    }
+
+    function timer() {
+        t = setTimeout(add, 1000);
+    }
+    timer(); /* Start button */
+    start.onclick = timer; /* Stop button */
+    stop.onclick = function() {
+        clearTimeout(t);
+    } /* Clear button */
+    clear.onclick = function() {
+        h1.textContent = "00:00:00";
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+    }
+
+</script>
+{% endblock %}

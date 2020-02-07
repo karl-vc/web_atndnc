@@ -1,0 +1,181 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-plain">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title float-left"><strong>Designation</strong></h3>
+          <button class="addbtn float-right" data-toggle="modal" data-target="#adddepartmentmodal"><i class="fa fa-plus pr-2"></i>Add Designation</button>
+        </div>
+        {% if added_designation %}
+
+        <div class="alert alert-default alert-dismissible fade show" role="alert">
+          <strong>New Designation Added</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> {% endif %}
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="center-dept z-depth-5">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bold">#</th>
+                      <th class="th-sm font-weight-bold">Designation</th>
+                      <th class="font-weight-bold">Department</th>
+                      <th class="font-weight-bold">Action</th>
+
+                    </tr>
+                  <tbody>
+                    {% for i in designations_data %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      <td>{{ i.designation_name }}</td>
+                      <td>{{ i.department_id.department_name }}</td>
+                      <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <a data-toggle="modal" data-target="#editmodal" class="btn btn-sm btn-info">EDIT</a>
+                          &nbsp;
+                          <a data-toggle="modal" data-target="#modalLoginForm" class="btn btn-sm btn-danger">DELETE</a>
+                        </div>
+                      </td>
+                    </tr>
+                    
+                    <!-- edit modal -->
+
+                    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editmodal" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Edit Designation</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body mx-3">
+                            <form method="post">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <label> DEPARTMENT NAME </label>
+                                <input type="hidden" name="dest_id" value="{{ i.designation_id }}">
+                                <input type="text" readonly name="dept_name" class="form-control" value="{{ i.department_id.department_name }}">
+                              </div>
+                               <div class="form-group">
+                                <label> DESIGNATION NAME </label>
+                                <input type="text" name="dest_name" class="form-control" value="{{ i.designation_name }}">
+                              </div>
+                              <div class="mx-auto">
+                                <button type="submit" name="edit_designation" class="btn btn-info">UPDATE</button>
+                              </div>
+                            </form>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!-- edit modal -->
+                      <!-- delete modal -->
+              <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title w-100 font-weight-bold">Are you sure to delete?</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-3">
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <form method="post">
+                          {% csrf_token %}
+                          <button class="btn btn-danger">Confirm</button>
+                        </form>
+                        <form class="pl-3">
+                          <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">Cancel</button>
+                        </form>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- delet modal -->
+                    
+                    
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+
+              <div class="department-input">
+                <div class="modal fade" id="adddepartmentmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Add Designation</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body mx-5 mt-4 mb-4">
+                        <form method="post" novalidate>
+                          {% csrf_token %}
+                          <div class="form-group">
+
+                            <label><strong>Department</strong></label><br>
+
+                            <select class="selectbox mdb-select md-form md-outline colorful-select dropdown-primary" name="department_selected">
+
+                              <option value="" disabled selected>-- Select Department --</option>
+                              {% for department in departments %}
+
+                              <option value="{{ department.department_id }}">{{ department.department_name }}</option>
+                              {% endfor %}
+
+
+
+                            </select>
+                            {% if invalid_role %}
+                            <p style="color:red;"> ** role not selected</p>
+                            {% endif %}</div>
+                          <div class="form-group">
+                            <label for="designationname2"><strong>Designation Name</strong></label>
+                            {{ form.designation_name }}
+                            {{ for.designation_name.errors }}</div>
+                          <button class="dept-save">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+<!---/main container-->
+
+
+{% endblock %}

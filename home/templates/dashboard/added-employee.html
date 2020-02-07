@@ -1,0 +1,138 @@
+{% extends 'dashboard/base.html' %} {% block content %}
+
+<div class="container">
+  <!-- Search form -->
+
+  <!-- Card -->
+  <div class="card">
+    <!-- Card content -->
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <label class="text-danger">Enter Employee Id/E-mail</label>
+        <div class="d-flex flex-row bd-highlight">
+          <div class="bd-highlight col-8">
+            <div class="form-group  active-pink-3 active-pink-4">
+              <input class="form-control" type="text" aria-label="Search" name="search_content" autocomplete="off" />
+            </div>
+          </div>
+          <div class="bd-highlight mt-3">
+            <button type="submit" class="btn btn-danger rounded" name="search-button">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+      {% if not_found and not found %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>User not found ! </strong> Enter valid details.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if found %}
+<div class="container">
+  <div class="card pb-5">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title font-weight-bold">Employee Details</h4>
+    </div>
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-section">
+              <div class="row">
+                <div class="col-md-5 mt-3">
+                  <img src="../static/img/profile.jpg" />
+                </div>
+                <div class="col-md-7">
+                  <div class="right-br mt-3">
+                    <h3 class="font-weight-bold">
+                      {{ employee_total_data.employee_username|capfirst }}
+                    </h3>
+                    <p>
+                      {{
+                      employee_total_data.designation_id.designation_name|capfirst
+                      }} <br /><span class="font-weight-bold">Employee ID : {{
+                        employee_total_data.employee_employee_id }}</span>
+                      <br />Date of Join : {{ employee_total_data.created_date
+                      }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-detail">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="title">Phone:</div>
+                    </li>
+                    <li>
+                      <div class="title">Email:</div>
+                    </li>
+                    <li>
+                      <div class="title">Birthday:</div>
+                    </li>
+
+                    <li>
+                      <div class="title">Gender:</div>
+                    </li>
+                    <li>
+                      <div class="title">Address:</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-7">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="text">
+                        {{ employee_total_data.employee_phone }}
+                      </div>
+                    </li>
+                    <li>
+                      <div class="text">
+                        {{ employee_total_data.employee_official_email }}
+                      </div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.birthday }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.gender }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.address }}</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="/user-profile-details?user-id={{ employee_total_data.employee_employee_id }}" class="btn btn-danger">View/Edit Profile</a>
+    </div>
+  </div>
+</div>
+
+{% endif %} {% endblock %} {% block js %}
+
+<script>
+  $("#input").datepicker({
+    footer: true,
+    modal: true
+  });
+
+</script>
+
+{% endblock %}

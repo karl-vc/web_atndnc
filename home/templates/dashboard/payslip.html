@@ -1,0 +1,110 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h3 class="card-title float-left"><strong>Salary Setting</strong></h3>
+          <div class="btngroup">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="" class="btn-group-icon">CSV</a>
+              <a href="" class="btn-group-icon"><i class="fa fa-file-text pr-2"></i>PDF</a>
+              <a href="" class="btn-group-icon"><i class="fa fa-print pr-2"></i>Print</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="payslip-section">
+            <h4>Payslip for the month of Feb 2019</h4>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <h3 class="float-right">Payslip #49029<br><span>Salary Month: March, 2019</span></h3>
+              </div>
+              <div class="col-md-12 mb-3">
+                <ul>
+                  <li>Dreamguy's Technologies</li>
+                  <li>3864 Quiet Valley Lane,</li>
+                  <li>Sherman Oaks, CA, 91403</li>
+                </ul>
+                <ul>
+                  <li class="font-weight-bold">John Doe</li>
+                  <li>Web Designer</li>
+                  <li>Employee ID: FT-0009</li>
+                  <li>Joining Date: 1 Jan 2013</li>
+                </ul>
+              </div>
+
+              <div class="col-md-6">
+                <div class="payslip-table">
+                  <h4>Earnings</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <caption>Net Salary: $59698 (Fifty nine thousand six hundred and ninety eight only.)</caption>
+                      <tbody>
+                        <tr>
+                          <td>Basic Salary</td>
+                          <td> $6500</td>
+                        </tr>
+                        <tr>
+                          <td>House Rent Allowance (H.R.A.)</td>
+                          <td>$55</td>
+                        </tr>
+                        <tr>
+                          <td>Conveyance</td>
+                          <td>$55</td>
+                        </tr>
+                        <tr>
+                          <td>Other Allowance</td>
+                          <td>$55</td>
+                        </tr>
+                        <tr>
+                          <td>Total Earnings</td>
+                          <td>$55</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="payslip-table">
+                  <h4>Deductions</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Tax Deducted at Source (T.D.S.)</td>
+                          <td> $0</td>
+                        </tr>
+                        <tr>
+                          <td>Provident Fund</td>
+                          <td>$0</td>
+                        </tr>
+                        <tr>
+                          <td>ESI</td>
+                          <td>$0</td>
+                        </tr>
+                        <tr>
+                          <td>Loan</td>
+                          <td>$300</td>
+                        </tr>
+                        <tr>
+                          <td>Total Deductions</td>
+                          <td>$59698</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

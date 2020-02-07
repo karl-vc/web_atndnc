@@ -1,0 +1,572 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title font-weight-bold">Employee ID : {{ employee_total_data.employee_employee_id }}</h4>
+
+      {% if edited_request %}
+      <div class="alert alert-secondary" role="alert">
+        Request sent for Editing Employee <a href="/home" class="alert-link"> Continue</a>
+      </div>
+
+
+      {% endif %}
+      {% if deleted_request %}
+      <div class="alert alert-secondary" role="alert">
+        Request sent for Deleting Employee <a href="/home" class="alert-link"> Continue</a>
+      </div>
+      {% endif %}
+
+      {% if permission_not_to_edit %}
+
+      <div class="alert alert-secondary" role="alert">
+        You don't have Permission to perform specific action
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <form method="post" class="form-inline pl-3">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info" name="request_to_edit">REQUEST TO EDIT</button>
+          </form>
+          <form method="post" class="form-inline pl-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" name="request_to_delete">REQUEST TO DELETE</button>
+          </form>
+        </div>
+
+
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% if not permission_not_to_edit %}
+<div class="container">
+  <div class="card pb-5">
+    <div class="card-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="profile-section">
+              <div class="row">
+                <div class="col-md-5 mt-3">
+                   <img src="../static/img/profilepicture.jpg" class="col-12">
+                </div>
+                <div class="col-md-7">
+                  <div class="right-br mt-3">
+                    <h3 class="font-weight-bold">{{ employee_total_data.employee_username|capfirst }}</h3>
+                    <p>{{ employee_total_data.designation_id.designation_name|capfirst }} <br><span class="font-weight-bold">Employee ID : {{ employee_total_data.employee_employee_id }}</span>
+                      <br>Date of Join : {{ employee_total_data.created_date }} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-detail">
+              <div class="row">
+                <div class="col-md-4">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="title">Phone:</div>
+                    </li>
+                    <li>
+                      <div class="title">Official Email:</div>
+                    </li>
+                    <li>
+                      <div class="title">Personal Email:</div>
+                    </li>
+                    <li>
+                      <div class="title">Birthday:</div>
+                    </li>
+                    <li>
+                      <div class="title">Gender:</div>
+                    </li>
+                    <li>
+                      <div class="title">Martial Status:</div>
+                    </li>
+                    <li>
+                      <div class="title">Address:</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-7">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="text">{{ employee_total_data.employee_phone }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.employee_official_email }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.employee_personal_email }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.birthday }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.gender }}</div>
+                    </li>
+
+                    <li>
+                      <div class="text">{{ employee_total_data.martial_status }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ employee_total_data.address }}</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-1">
+                  <div class="first-editbtn">
+                    <button data-toggle="modal" data-target="#editprofilemodal"><i class="fa fa-pencil"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="myprofilemodal">
+      <div class="modal fade" id="editprofilemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 ml-4">Employee Profile</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mb-4">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-12 mb-5">
+                  <img src="../static/img/profile.jpg">
+                </div>
+                <div class="col-md-12">
+                  <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>First Name</label>
+                          <input type="text" class="form-control" placeholder="First name" name="first_name">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Last Name</label>
+                          <input type="text" class="form-control" placeholder="Last name" name="last_name">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Birthday</label>
+                          <input class="datepicker" type="text" id="input" width="238" name="birthday">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label> Gender </label>
+                        <div class="md-form mt-3">
+                          <div class="form-group">
+                            <select class="custom-select browser-default" name="gender">
+                              <option disabled selected>-- select --</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Phone Number</label>
+                          <input class="form-control" type="text" name="phone_number">
+
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Personal Email</label>
+                          <input class="form-control" type="text" name="personal_email">
+
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Martial Status</label>
+                          <select class="custom-select browser-default" name="martial">
+                            <option disabled selected>-- select --</option>
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Married">Married</option>
+                            <option value="Unmarried">Married</option>
+                          </select>
+
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Address</label>
+                          <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" name="address"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="detailsubmit">
+                          <button type="submit" name="update_basic">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title font-weight-bold float-left">Bank Information</h4>
+          <div class="editmodelbtn">
+            <button class="float-right" data-toggle="modal" data-target="#bankinformationmodal"><i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="profile-detail">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="title">Bank Name:</div>
+                    </li>
+                    <li>
+                      <div class="title">Account No:</div>
+                    </li>
+                    <li>
+                      <div class="title">IFSC Code:</div>
+                    </li>
+                    <li>
+                      <div class="title">PAN NO:</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="detail-list">
+                    <li>
+                      <div class="text">{{ bank_details_emp.bank_name }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ bank_details_emp.account_no }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ bank_details_emp.ifsc_code }}</div>
+                    </li>
+                    <li>
+                      <div class="text">{{ bank_details_emp.pan }}</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="myprofilemodal">
+      <div class="modal fade" id="bankinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 ml-4 mt-4">Bank Information</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mb-4">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-12">
+
+                  <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label> Bank Name </label>
+                          <input type="text" class="form-control" placeholder="Bank Name" name="bank_name">
+                        </div>
+                      </div>
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label> Account No. </label>
+                          <input type="text" class="form-control" placeholder="Account No" name="account_number">
+                        </div>
+                      </div>
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label> IFSC Code </label>
+                          <input type="text" class="form-control" placeholder="IFSC Code" name="ifsc_code">
+                        </div>
+                      </div>
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label> Pan no. </label>
+                          <input type="text" class="form-control" placeholder="PAN NO" name="pan_number">
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="detailsubmit">
+                          <button type="submit" name="update_bank_details">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ 
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title font-weight-bold float-left">Education Information</h4>
+          <div class="editmodelbtn">
+            <button class="float-right" data-toggle="modal" data-target="#educationinformationmodal"><i class="fa fa-pencil"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="profile-detail">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="education-information">
+                  
+                     <h3><strong>{{ employee_total_data.masters_college_name }}</strong></h3>
+                    <p>{{ employee_total_data.masters_college_course_name }},
+                    {{ employee_total_data.masters_start_year }} - {{ employee_total_data.masters_complete_year }}</p>    
+                    <br>
+                     <h3><strong>{{ employee_total_data.graduation_college_name }}</strong></h3>
+                    <p>{{ employee_total_data.graduation_college_course_name }},
+                    {{ employee_total_data.graduation_start_year }} - {{ employee_total_data.graduation_complete_year }}</p>    
+                    <br>
+                     <h3><strong>{{ employee_total_data.sec_schl_name }}</strong></h3>
+                    <p>{{ employee_total_data.sec_schl_board }},
+                    {{ employee_total_data.sec_schl_complete_year }}</p>    
+                    <br>
+                     <h3><strong>{{ employee_total_data.matric_schl_name }}</strong></h3>
+                    <p>{{ employee_total_data.matric_schl_board }},
+                   {{ employee_total_data.matric_schl_complete_year }}</p>    
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="myprofilemodal">
+      <div class="modal fade" id="educationinformationmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 ml-4 mt-4">Education Information</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-5 mb-4">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-12">
+                  <form method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Masters College Name *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="master_college_name">
+                        </div>
+                      </div>
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Course Name *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="master_course_name">
+                        </div>
+                      </div>
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>College details *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="master_college_details">
+                        </div>
+                      </div>
+
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Start Year *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="master_start_year">
+                        </div>
+                      </div>
+
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Completion Year *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="master_end_year">
+                        </div>
+                      </div>
+                      <!--graduation details-->
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Graduation College Name *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="graduation_college_name">
+                        </div>
+                      </div>
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Course Name *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="graduation_course_name">
+                        </div>
+                      </div>
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>College details *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="graduation_college_details">
+                        </div>
+                      </div>
+
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Start Year *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="graduation_start_year">
+                        </div>
+                      </div>
+
+                      <div class="col-md-6  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Completion Year *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="graduation_end_year">
+                        </div>
+                      </div>
+
+                      <!-- /graduation details-->
+
+                      <!-- sr.sec details-->
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Sr. Sec. School Name *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="senior_school_name">
+                        </div>
+                      </div>
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Sr. Sec. School Board *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="senior_school_board">
+                        </div>
+                      </div>
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Sr. Sec. School details *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="senior_school_details">
+                        </div>
+                      </div>
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Completion Year *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="senior_school_end_year">
+                        </div>
+                      </div>
+                      <!-- /sr. sec. details-->
+
+                      <!--matric details-->
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Matric School Name *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="matric_school_name">
+                        </div>
+                      </div>
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Matric School Board*</label>
+                          <input type="text" class="form-control" placeholder="Name" name="matric_school_board">
+                        </div>
+                      </div>
+
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Matric School details *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="matric_school_details">
+                        </div>
+                      </div>
+                      <div class="col-md-12  mx-auto">
+                        <div class="md-form form-group mt-0">
+                          <label>Completion Year *</label>
+                          <input type="text" class="form-control" placeholder="Name" name="matric_school_end_year">
+                        </div>
+                      </div>
+                      <!-- /matric details-->
+                      <div class="col-md-12">
+                        <div class="detailsubmit">
+                          <button type="submit" name="school_details">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <form method="post">
+      {% csrf_token %}
+      <button class="btn btn-lg btn-danger" type="submit" name="update_profile">Update Employee</button>
+    </form>
+
+
+  </div>
+</div>
+
+
+{% endif %}
+{% endblock %}
+
+
+{% block js %}
+{% if not permission_not_to_edit %}
+<script>
+  $('#input').datepicker({
+    footer: true,
+    modal: true
+  });
+
+</script>
+{% endif %}
+{% endblock %}

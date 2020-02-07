@@ -1,0 +1,765 @@
+{% extends 'dashboard/base.html' %}{% block content %}{% if request.session.user_role_id == 1 %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-bax">
+    
+        <div class="">
+          <h3>Welcome,{{ company_data.company_name  }}</h3>
+          <p> {{ today_day }},{{ today_date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h2>Requests</h2>
+  <button id="show_hide" type="button" class="btn btn-sm btn-danger">Show/Hide</button>
+  <table class="table table-hover" id="toggle_tst">
+    <thead>
+      <tr>
+        <th scope="row">Requests</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in notify_requests %}
+      <tr>
+        {% if not i.edit_request_by_emp and i.request_status == 1 %}
+        <td>HR <span class="text-danger">{{ i.edit_request_hr_email }}</span> wants to edit Employee <span class="text-danger">{{ i.employee_username|capfirst }}</span> with ID: <span class="text-info">{{ i.employee_employee_id }}</span></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+      {% for i in notify_requests %}
+      <tr>
+        {% if i.request_status == 4 %}
+        <td>HR <span class="text-danger">{{ i.edit_request_hr_email }}</span> wants to delete Employee <span class="text-danger">{{ i.employee_username|capfirst }}</span> with ID: <span class="text-info">{{ i.employee_employee_id }}</span></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline">Decline</button></form>
+
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+      {% for i in termination_requests %}
+      <tr>
+        {% if i.request_status == 1 %}
+        <td>HR <span class="text-danger">{{ i.terminate_request_by }} </span> wants to terminate <span class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }} </span> with ID: <span class="text-info">{{ i.employee_employee_id_id }}</span> on the {{ i.termination_date }} for {{ i.reason }}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_termination">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_termination">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+
+
+    </tbody>
+  </table>
+</div>
+
+<!-- Requests -->
+
+<div class="container">
+  <h2>Notifications</h2>
+  <button id="show_hide_requests" type="button" class="btn btn-sm btn-danger">Show/Hide</button>
+  <table class="table table-hover" id="toggle_tst_requests">
+    <thead>
+      <tr>
+        <th scope="row">Requests</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in requests_data %}
+      <tr>
+        {% if i.request_status == 1 %}
+        <td><span class="text-danger">{{ i.edit_request_hr_email }}</span> wants to edit Employee <span class="text-danger">{{ i.employee_username|capfirst }}</span> with ID: <span class="text-info">{{ i.employee_employee_id }}</span></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+      {% for i in notify_requests %}
+      <tr>
+        {% if i.request_status == 4 %}
+        <td>HR <span class="text-danger">{{ i.edit_request_hr_email }}</span> wants to delete Employee <span class="text-danger">{{ i.employee_username|capfirst }}</span> with ID: <span class="text-info">{{ i.employee_employee_id }}</span></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline">Decline</button></form>
+
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+      {% for i in termination_requests %}
+      <tr>
+        {% if i.request_status == 1 %}
+        <td>HR <span class="text-danger">{{ i.edit_request_hr_email }} </span> wants to terminate <span class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }} </span> with ID: <span class="text-info">{{ i.employee_employee_id_id }}</span> on the {{ i.termination_date }} for {{ i.reason }}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_termination">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_termination">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+
+
+    </tbody>
+  </table>
+</div>
+
+
+
+{% endif %}
+{% if request.session.user_role_id == 2 %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-bax">
+       
+        <div class="">
+          <h3>Welcome,{{ hr_data.user_firstname  }}</h3>
+          <p> {{ today_day }},{{ today_date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- HR NOTIFICATIONS TAB -->
+
+
+<!-- requests hr -->
+<!-- Requests -->
+
+<div class="container">
+  <h2>Requests
+    <button id="show_hide_requests" type="button" class="btn btn-sm btn-danger pull-right">Show/Hide</button></h2>
+
+  <table class="table table-hover" id="toggle_tst_requests">
+    <thead>
+      <tr>
+        <th scope="row">Requests</th>
+
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for i in leaves_data %}
+      <tr>
+        {% if i.short_leave and i.leave_status == 1 %}
+        <td>
+
+          EMP ID : <span class="text-danger"> {{ i.employee_employee_id_id }}</span> wants to take short leave for reason - <span class="text-danger">{{ i.reason }}</span> Date -<span class="text-info"> {{ i.short_leave_date }}</span>
+
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_short_leave">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_short_leave">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+
+        {% if i.half_day_leave and i.leave_status == 1 %}
+        <td>
+
+          EMP ID : <span class="text-danger"> {{ i.employee_employee_id_id }}</span> wants to take Half day leave for reason - <span class="text-danger">{{ i.reason }}</span> Date -<span class="text-info"> {{ i.half_day_leave_date }}</span>Holiday type-{{ i.leave_type }}
+
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_half_leave">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_half_leave">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+
+        {% if i.one_day_leave and i.leave_status == 1 %}
+        <td>
+
+          EMP ID : <span class="text-danger"> {{ i.employee_employee_id_id }}</span> wants to take One day leave for reason - <span class="text-danger">{{ i.reason }}</span> Date -<span class="text-info"> {{ i.one_day_leave_date }}</span>
+          Holiday type-{{ i.leave_type }}
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_oneday_leave">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_oneday_leave">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+
+        {% if i.leave_policy_type == 'Sandwich' and i.leave_status == 1 %}
+
+        <td>
+
+          EMP ID : <span class="text-danger"> {{ i.employee_employee_id_id }}</span> wants to take Sandwich Policy Holiday from <span class="text-info">{{ i.leave_from }} - {{ i.leave_to }}</span> reason - <span class="text-danger">{{ i.reason }}</span>Holiday type-{{ i.leave_type }}
+
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_sandwich_leave">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_sandwich_leave">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+        
+         {% if i.leave_policy_type == 'LineToLine' and i.leave_status == 1 %}
+
+        <td>
+
+          EMP ID : <span class="text-danger"> {{ i.employee_employee_id_id }}</span> wants to take Line to Line Policy Holiday from <span class="text-info">{{ i.leave_from }} - {{ i.leave_to }}</span> reason - <span class="text-danger">{{ i.reason }}</span>Holiday type-{{ i.leave_type }}
+
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_line_leave">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_line_leave">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+        
+      </tr>
+      {% endfor %}
+
+
+
+
+
+
+
+
+      {% for i in notifications_data %}
+      <tr>
+        {% if i.request_status == 1 and i.edit_request_by_emp %}
+        <td>Employee <span class="text-danger">{{ i.employee_username|capfirst }}</span> wants to edit account their with ID: <span class="text-info">{{ i.employee_employee_id }}</span></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved">Request</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+      {% for i in notify_requests %}
+      <tr>
+        {% if i.request_status == 4 %}
+        <td>HR <span class="text-danger">{{ i.edit_request_by }}</span> wants to delete Employee <span class="text-danger">{{ i.employee_username|capfirst }}</span> with ID: <span class="text-info">{{ i.employee_employee_id }}</span></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline">Decline</button></form>
+
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+      {% for i in termination_requests %}
+      <tr>
+        {% if i.request_status == 1 %}
+        <td>HR <span class="text-danger">{{ i.terminate_request_by }} </span> wants to terminate <span class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }} </span> with ID: <span class="text-info">{{ i.employee_employee_id_id }}</span> on the {{ i.termination_date }} for {{ i.reason }}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-success" name="approved_termination">Approve</button>
+            </form>
+            <form method="post" class="pl-2">
+              {% csrf_token %}
+              <input type="hidden" name="actionable_id" value="{{ i.employee_employee_id_id }}">
+              <button type="submit" class="btn btn-sm btn-danger" name="decline_termination">Decline</button></form>
+
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+
+
+    </tbody>
+  </table>
+</div>
+
+<!-- request hr -->
+
+
+
+<div class="container">
+  <h2>Notifications
+    <button id="show_hide_notif" type="button" class="btn btn-sm btn-danger pull-right">Show/Hide</button></h2>
+
+  <table class="table table-hover" id="div_show_hide_notif">
+
+    <tbody>
+      {% for i in notifications_data %}
+      <tr> {% if i.request_status == 1 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to edit <strong class="text-danger">{{ i.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id }}</strong> is pending.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </td>
+        {% endif %}
+        {% if i.request_status == 2 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to edit <strong class="text-danger">{{ i.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id }}</strong> is approved.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+        {% if i.request_status == 3 %}
+        <td>
+
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to edit <strong class="text-danger">{{ i.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id }}</strong> is declined.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+      {% for i in termination_requests %}
+      <tr>
+        {% if i.request_status == 1 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to Terminate <strong class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id_id }}</strong> is pending.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+        {% if i.request_status == 2 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to Terminate <strong class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id_id }}</strong> is approved.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">    <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+        {% if i.request_status == 3 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to Terminate <strong class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id_id }}</strong> is declined.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+</div>
+<!-- / HR NOTIFICATIONS TAB-->
+{% endif %}{% if request.session.user_role_id == 3 %}<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-bax">
+
+        <div class="">
+          <h3>Welcome,{{ employee_data.employee_firstname  }}</h3>
+          <p> {{ today_day }},{{ today_date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Notifications
+    <button id="show_hide_notif" type="button" class="btn btn-sm btn-danger pull-right">Show/Hide</button></h2>
+
+  <table class="table table-hover" id="div_show_hide_notif">
+
+    <tbody>
+      <tr>
+       {% if terminate_notice %} 
+        
+       <td>
+        <div class="main-row mt-4">
+        <h5 class="titlecolor"><i class="fa fa-hourglass-o pr-4"></i>Termination Notice</h5><br>
+        <p>Reason - {{ terminations_data.reason }} </p><br>
+        <p>Your Account will be disabled after {{ terminations_data.termination_date }} </p>
+      </div> </td> 
+        {% endif %}
+      
+      </tr>
+      
+      {% for i in notifications_data %}
+      <tr> {% if i.request_status == 1 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to edit <strong class="text-danger">{{ i.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id }}</strong> is pending.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+        </td>
+        {% endif %}
+        {% if i.request_status == 2 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to edit <strong class="text-danger">{{ i.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id }}</strong> is approved.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+        {% if i.request_status == 3 %}
+        <td>
+
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to edit <strong class="text-danger">{{ i.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id }}</strong> is declined.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+      {% for i in termination_requests %}
+      <tr>
+        {% if i.request_status == 1 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to Terminate <strong class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id_id }}</strong> is pending.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+        {% if i.request_status == 2 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to Terminate <strong class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id_id }}</strong> is approved.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">    <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+        {% if i.request_status == 3 %}
+        <td>
+          <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            Your request to Terminate <strong class="text-danger">{{ i.employee_employee_id.employee_username|capfirst }}</strong> with ID: <strong class="text-danger">{{ i.employee_employee_id_id }}</strong> is declined.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="main-container">
+  <div class="container-fluid">
+    <div class="row"> {% if terminate_notice %} <div class="main-row mt-4">
+        <h5 class="titlecolor"><i class="fa fa-hourglass-o pr-4"></i>Termination Notice</h5><br>
+        <p>Reason - {{ terminations_data.reason }} </p><br>
+        <p>Your Account will be disabled after {{ terminations_data.termination_date }} </p>
+      </div> {% endif %} <div class="col-md-7">
+        <h4>Today</h4>
+        <div class="main-row mt-4">
+          <h5 class="float-left"><i class="fa fa-suitcase pr-4"></i>You are away today</h5><img src="/static/img/profile11.png" class="float-right">
+        </div>
+        <div class="main-row mt-4 mb-3">
+          <h5 class="float-left"><i class="fa fa-building-o pr-4"></i>You are working home today</h5><img src="/static/img/profile11.png" class="float-right">
+        </div>
+        <h4>Tomorrow</h4>
+        <div class="main-row mt-2 mb-4">
+          <h5 class="float-left"><i class="fa fa-suitcase pr-4"></i>2 People will be away tomorrow</h5><img src="/static/img/profile11.png" class="float-right">
+        </div>
+        <h4>Next seven days</h4>
+        <div class="main-row mt-2 mb-4">
+          <h5 class="float-left"><i class="fa fa-suitcase pr-4"></i>2 People are going to be away</h5><img src="/static/img/profile11.png" class="float-right">
+        </div>
+        <div class="main-row mt-2 mb-4">
+          <h5 class="float-left"><i class="fa fa-user-plus pr-4"></i>Your first day is going to be on thursday</h5><img src="/static/img/profile11.png" class="float-right">
+        </div>
+        <div class="main-row mt-2 mb-4">
+          <h5 class="float-left"><i class="fa fa-calendar pr-4"></i>It's Spring Bank Holiday on Monday</h5><img src="img/profile11.png" class="float-right">
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <h4>Project</h4>
+        <div class="right-div mt-4 mb-4">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <div class="left-section">
+                <h5>4.5</h5>
+                <p>Leave Taken</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="right-section">
+                <h5>12</h5>
+                <p>Remaining</p>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="center-div">
+                <h5>2</h5>
+                <p>Total Projects</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4>Your Leave</h4>
+        <div class="right-div mt-2 mb-4">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <div class="left-section">
+                <h5>4.5</h5>
+                <p>Leave Taken</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="right-section">
+                <h5>12</h5>
+                <p>Remaining</p>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="center-div"><button>Apply Leave</button></div>
+            </div>
+          </div>
+        </div>
+        <h4>Your time off allowance</h4>
+        <div class="right-div mt-2 mb-4">
+          <div class="row text-center">
+            <div class="col-md-6">
+              <div class="left-section">
+                <h5>5.0 Hours</h5>
+                <p>Approved</p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="right-section">
+                <h5>15 Hours</h5>
+                <p>Remaining</p>
+              </div>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="center-div"><button>Apply Time Off</button></div>
+            </div>
+          </div>
+        </div>
+        <h4>Upcoming Holiday</h4>
+        <div class="right-div mt-2 mb-4">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <div class="center-div">
+                <h5>Mon 20 May 2019 - Ramzan</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-------------------------------------------------------------------------CONTENT CLOSED HERE----------------------------------------------------->
+</div>{% endif %}{% endblock %}
+{% block js %}
+
+<script>
+  $(document).ready(function() {
+    $("#show_hide").click(function() {
+      $("#toggle_tst").toggle()
+    });
+  });
+
+  $(document).ready(function() {
+    $("#show_hide_requests").click(function() {
+      $("#toggle_tst_requests").toggle()
+    });
+  });
+
+  $(document).ready(function() {
+    $("#show_hide_notif").click(function() {
+      $("#div_show_hide_notif").toggle()
+    });
+  });
+
+</script>
+{% endblock %}
